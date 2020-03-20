@@ -22,7 +22,10 @@ return [
         'aliyun' => [
             'access_key_id' => env('ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('ALIYUN_ACCESS_KEY_SECRET'),
-            'sign_name' => 'weiApp验证码',
+            'sign_name' => env('SMS_ALIYUN_SIGN_NAME'),
+            'templates'=>[
+                'register'=> env('SMS_ALIYUN_TEMPLATE_REGISTER'),
+            ]
         ],
     ],
 ];
