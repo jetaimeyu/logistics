@@ -13,8 +13,19 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function (){
-    Route::post('verificationCodes', 'VerificationCodeController@store')
-    ->name('verificationCodes.store');
-    Route::post('users', 'UsersController@store')->name('users.store');
-});
+Route::prefix('v1')
+    ->namespace('Api')
+    ->middleware('throttle:1,1')
+    ->name('api.v1.')
+    ->group(function () {
+        Route::middleware('throttle:' . config('api.rate_limit.sign'))->group(function () {
+            Route::post('verificationCodes', 'VerificationCodeController@store')
+                ->name('verificationCodes.store');
+            Route::post('users', 'UsersController@store')->name('users.store');
+        });
+
+        Route::middleware('throttle:' . config('api.rate_limit.access'))->group(function () {
+
+        });
+
+    });
