@@ -12,5 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::namespace('Home')->group(function (){
+    //首页
+    Route::get('/', 'IndexController@index');
+    //登录页面
+    //注册页面
+    Route::get('signup', 'IndexController@signup');
 
-Route::get('/', 'IndexController@index');
+    //登录相关
+    Route::get('login', 'SessionsController@create')->name('login');
+    Route::post('login', 'SessionsController@store')->name('login');
+    Route::delete('login', 'SessionsController@destroy')->name('logout');
+    Route::resource('users', 'UsersController');
+
+});
+
+//Route::get('/signup', )
