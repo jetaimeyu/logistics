@@ -24,6 +24,8 @@ Route::namespace('Home')->group(function (){
     Route::post('login', 'SessionsController@store')->name('login');
     Route::delete('login', 'SessionsController@destroy')->name('logout');
     Route::resource('users', 'UsersController');
+    Route::get('captcha/{temp}', 'UsersController@captcha')->name('captcha');
+    Route::get('verification', 'UsersController@getVerificationCode')->name('getVerificationCode');
 
 });
 

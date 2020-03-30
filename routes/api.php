@@ -26,15 +26,9 @@ Route::prefix('v1')
             //用户注册
             Route::post('users', 'UsersController@store')->name('users.store');
             //第三方登录
-            Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->where('social_type','weixin')->name('socials.authorizations.store');
+            Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->where('social_type', 'weixin')->name('socials.authorizations.store');
             //登录
             Route::post('authorizations', 'AuthorizationsController@store')->name('api.authorizations.store');
-
-//            //刷新token
-//            Route::put('authorizations/current','AuthorizationsController@update')->name('authorizations.update');
-//            //删除token
-//            Route::delete('authorizations/current', 'AuthorizationsController@destory')->name('authorizations.destroy');
-
 
             // 刷新token
             Route::put('authorizations/current', 'AuthorizationsController@update')
@@ -46,6 +40,14 @@ Route::prefix('v1')
 
         Route::middleware('throttle:' . config('api.rate_limit.access'))->group(function () {
 
+            Route::get('users/{user}', 'UsersController@show')->name('users.show');
+            Route::middleware('auth:api')->group(function () {
+
+                Route::get('user', 'UsersController@me')->name('user.show');
+
+
+            });
         });
 
     });
+Route::get('login', 'Api\AuthorizationsController@store')->name('login');
