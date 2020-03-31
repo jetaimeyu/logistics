@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 
+use App\Models\User;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 use http\Env\Response;
@@ -31,10 +32,23 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $builder = new CaptchaBuilder();
-        $d = $builder->testPhrase($request->captcha);
-        dd($d, \session('signImg'), $request->all());
-
+        $this->validate($request, [
+            'phone'=>'required|regex:/^1[34578][0-9]{9}$/|unique:users',
+            'verificationCode'=>'required',
+            'password'=>'required|confirmed|min:6'
+        ], [],['phone'=>'手机号', 'verificationCode'=>'手机验证码']);
+        //对比手机验证码
+        if (!hash_equals($request->verificationCode, (string) \session('verificationCode'))){
+            return back()->withErrors('手机验证码不正确')->withInput();
+        }
+        $user = User::create([
+            'name'=>$request->phone,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password)
+        ]);
+        auth()->login($user);
+        session()->flash('success', '注册成功');
+        return redirect('/');
     }
 
     /**
@@ -58,35 +72,41 @@ class UsersController extends Controller
      */
     public function getVerificationCode(Request $request, EasySms $easySms)
     {
-
         $validator = Validator::make($request->all(),[
-            'phone'=>'required|regex:/^1[34578][0-9]{9}$/',
+            'phone'=>'required|regex:/^1[34578][0-9]{9}$/|unique:users',
             'captcha'=>'required'
-        ]);
+        ],[],['phone'=>'手机号', 'captcha'=>'图片验证码']);
         if ($validator->errors()->all()){
-            return response()->json(['status'=>0, 'message'=>$validator->errors()->getMessages()]);
+            $err = [];
+            foreach ($validator->getMessageBag()->toArray() as $key=>$item){
+               array_push($err, "<li>".$item[0]."</li>");
+            }
+            return response()->json(['status'=>0, 'message'=>implode($err)]);
         }
         $captcha = $request->captcha;
         if (!hash_equals($captcha, \session('signImg'))){
-            return response()->json(['status'=>0, 'message'=>'图片验证码错误']);
+            return response()->json(['status'=>0, 'message'=>"<li>图片验证码错误</li>"]);
         }
         $phone = $request->phone;
-        $code = str_pad(random_int(0,9999),4,0,STR_PAD_LEFT);
-        try{
-            $result = $easySms->send($phone, [
-                'template'=> config('easysms.gateways.aliyun.templates.register'),
-                'data'=>[
-                    'code'=>$code
-                ]
-            ]);
+        if (!app()->environment('production')){
+            $code =1234;
+        }else {
+            $code = str_pad(random_int(0, 9999), 4, 0, STR_PAD_LEFT);
+            try {
+                $result = $easySms->send($phone, [
+                    'template' => config('easysms.gateways.aliyun.templates.register'),
+                    'data' => [
+                        'code' => $code
+                    ]
+                ]);
 
-        }catch (NoGatewayAvailableException $exception){
-            $message = $exception->getException('aliyun')->getMessage() || '短信发送异常';
-            return response()->json(['status'=>0, 'message'=>$message]);
+            } catch (NoGatewayAvailableException $exception) {
+                $message = $exception->getException('aliyun')->getMessage() ?: '短信发送异常';
+                return response()->json(['status' => 0, 'message' => "<li>".$message."</li>"]);
+            }
         }
         \session(['verificationCode'=>$code]);
         return response()->json(['status'=>1, 'message'=>'发送成功']);
-
     }
 
     /**
