@@ -1,10 +1,10 @@
 @extends('layouts.default')
-@section('title','注册')
+@section('title', '重置密码')
 @section('content')
     <div class="offset-md-2 col-md-8">
         <div class="card">
             <div class="card-header">
-                <h5>注册</h5>
+                <h5>重置密码</h5>
             </div>
             <div class="card-body">
                 @include('shared._errors')
@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 {{--验证码错误信息end--}}
-                <form action="{{route('users.store')}}" method="post">
+                <form action="{{route('password.resetPassword')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="phone">手机号</label>
@@ -51,7 +51,7 @@
                         <label for="password_confirmation">重复密码</label>
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}">
                     </div>
-                    <button type="submit" class="btn btn-primary">注册</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
                 </form>
             </div>
         </div>
@@ -78,7 +78,6 @@
         function updateImg() {
             var url = "{{url('captcha')}}";
             url += ("/" + Math.random());
-            console.log(url);
             $("#captchaImg").attr('src', url);
         }
 

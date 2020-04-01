@@ -73,7 +73,7 @@ class UsersController extends Controller
     public function getVerificationCode(Request $request, EasySms $easySms)
     {
         $validator = Validator::make($request->all(),[
-            'phone'=>'required|regex:/^1[34578][0-9]{9}$/|unique:users',
+            'phone'=>'required|regex:/^1[34578][0-9]{9}$/',
             'captcha'=>'required'
         ],[],['phone'=>'手机号', 'captcha'=>'图片验证码']);
         if ($validator->errors()->all()){
@@ -127,5 +127,32 @@ class UsersController extends Controller
         $builder->output();
     }
 
+    /**
+     * 密码重置页面
+     */
+    public function reset()
+    {
+        return view('users.reset');
+    }
 
+    /**
+     * 密码重置提交
+     */
+    public function resetPassword(Request $request)
+    {
+        $this->validate($request, [
+            'phone'=>'required|regex:/^1[34578][0-9]{9}$/|exists:users,phone',
+            'verificationCode'=>'required',
+            'password'=>'required|confirmed|min:6'
+        ], [],['phone'=>'手机号', 'verificationCode'=>'手机验证码']);
+        //对比手机验证码
+        if (!hash_equals($request->verificationCode, (string) \session('verificationCode'))){
+            return back()->withErrors('手机验证码不正确')->withInput();
+        }
+        $user = User::where('phone', $request->phone)->update(['password'=> bcrypt($request->password)]);
+        if ($user){
+            session()->flash('success', '修改成功');
+            return redirect('/login');
+        }
+    }
 }

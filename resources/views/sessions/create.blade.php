@@ -15,14 +15,14 @@
                         <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" value="{{old('phone')}}">
                     </div>
                     <div class="form-group">
-                        <label for="password">密码</label>
+                        <label for="password">密码 （<a href="{{ route('password.reset') }}">忘记密码</a>）：</label>
                         <input type="password"  name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="{{old('password')}}">
                     </div>
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <input type="checkbox" name="remember"  class="form-check-input" id="remember">
+                        <label class="form-check-label" for="remember">记住我</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">登录</button>
                 </form>
             </div>
 

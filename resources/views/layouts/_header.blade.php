@@ -9,17 +9,17 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-            <ul class="nav nav-pills " id="nav-tabs">
-                <li class="nav-item ">
-                    <a class="nav-link active" href="#">嘿嘿</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">哈哈哈</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
+{{--            <ul class="nav nav-pills " id="nav-tabs">--}}
+{{--                <li class="nav-item ">--}}
+{{--                    <a class="nav-link active" href="#">嘿嘿</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">哈哈哈</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">Link</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
 
         @if(Auth::check())
             <div class="dropdown justify-content-end">

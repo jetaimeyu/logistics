@@ -27,6 +27,9 @@ Route::namespace('Home')->group(function (){
     Route::get('captcha/{temp}', 'UsersController@captcha')->name('captcha');
     Route::get('verification', 'UsersController@getVerificationCode')->name('getVerificationCode');
 
+    Route::get('password/reset', 'UsersController@reset')->name('password.reset');
+    Route::post('password/resetPassword', 'UsersController@resetPassword')->name('password.resetPassword');
+
 });
 
 //Route::get('/signup', )
