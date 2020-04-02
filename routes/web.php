@@ -29,6 +29,10 @@ Route::namespace('Home')->group(function (){
 
     Route::get('password/reset', 'UsersController@reset')->name('password.reset');
     Route::post('password/resetPassword', 'UsersController@resetPassword')->name('password.resetPassword');
+    Route::middleware('auth:web')->group(function (){
+        Route::get('company/create', 'CompanyController@create')->name('company.create');
+        Route::post('company/store', 'CompanyController@store')->name('company.store');
+    });
 
 });
 
