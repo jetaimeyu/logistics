@@ -6,45 +6,97 @@
             <h5>信息编辑</h5>
         </div>
         <div class="card-body">
-            <form class="" action="">
+            <form class="" action="{{route('company.store')}}" method="post" id="company-create">
+                @csrf
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">名称</label>
+                    <label for="compName" class="col-sm-2 col-form-label">名称</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputPassword">
+                        <input type="text" class="form-control" id="compName" name="compName">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="addressDetail" class="col-sm-2 col-form-label">联系人</label>
+                    <label for="contact" class="col-sm-2 col-form-label">联系人</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addressDetail">
+                        <input type="text" class="form-control" id="contact" name="contact">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="addressDetail" class="col-sm-2 col-form-label">座机</label>
+                    <label for="tel" class="col-sm-2 col-form-label">座机</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addressDetail">
+                        <input type="text" class="form-control" id="tel" name="tel">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="addressDetail" class="col-sm-2 col-form-label">手机</label>
+                    <label for="phone" class="col-sm-2 col-form-label">手机</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addressDetail">
+                        <input type="text" class="form-control" id="phone" name="phone">
                     </div>
+                </div>
+                <div class="input-group row ">
+                    <label class="col-sm-2 col-form-label" for="inputGroupSelect01">Options</label>
+                    <div class="col-sm-8 row">
+                        <div class="col-sm-4">
+                            <select name="input_province" id="input_province" class="form-control">
+                                <option value="">--请选择--</option>
+                                <option value="">--请选择--</option>
+                                <option value="">--请选择--</option>
+                                <option value="">--请选择--</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="input_city" id="input_city" class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="input_area" id="input_area" class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <i class="fa fa-power-off"></i>
+                        <svg class="bi bi-alert-triangle text-success" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            ...
+                        </svg>
+                        Bootstrap Icons
+                        <button type="button" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-user"></span> User
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label input-group-prepend">地址</label>
+{{--                    <div class="col-sm-8">--}}
+                        <select class="custom-select input-group-prepend" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <select class="custom-select input-group-prepend" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+{{--                    </div>--}}
                 </div>
                 <div class="form-group row" onclick="showMapModal()">
                     <label for="address" class="col-sm-2 col-form-label">地址</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="address">
-                        <input type="text" hidden id="lng">
-                        <input type="text" hidden id="lat">
+                        <input type="text" class="form-control" id="address" name="address">
+                        <input type="text" hidden id="lng" name="lng">
+                        <input type="text" hidden id="lat" name="lat">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addressDetail">
+                        <input type="text" class="form-control" id="addressDetail" name="addressDetail">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
             </form>
         </div>
         <!-- MapModal -->
@@ -88,7 +140,16 @@
     <!-- MapModalEnd -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
     <script>
-        var map, geoc, mk,currentPoint,currentAddress;
+        $(function () {
+            $("#submit-button").click(function(){
+                $(this).attr("disabled","true"); //设置变灰按钮
+                $("#company-create").submit();//提交表单
+                setTimeout("$('#submit').removeAttr('disabled')",3000); //设置三秒后提交按钮 显示
+            })
+        })
+    </script>
+    <script>
+        var map, geoc, mk,currentPoint,province,city,district, currentAddress;
         $(function () {
             map = new BMap.Map("container", {enableMapClick: false});
             var point = new BMap.Point(117.03233899835905, 36.68278473);
@@ -100,6 +161,7 @@
                 map.clearOverlays();
                 var lng = e.point.lng;
                 var lat = e.point.lat;
+
                 //创建标注位置
                 var pt = new BMap.Point(lng, lat);
                 currentPoint= pt;
@@ -108,6 +170,12 @@
                 // 将标注添加到地图中
                 // map.panTo(pt);
                 geoc.getLocation(pt, function (rs) {
+                    console.log('选点地址信息',rs);
+                    var addComponent= rs.addressComponents;
+                    province = addComponent.province;
+                    city=addComponent.city;
+                    district= addComponent.district;
+                    // currentAddress= rs.address
                     showInfoWindow(marker2, rs.address);
                 });
             });
@@ -142,7 +210,8 @@
                 return;
             }
             $('#mapModal').modal('hide');
-            $('#address').val(currentAddress);
+            $('#address').val(province+city+district);
+            $('#addressDetail').val(currentAddress);
             $('#lng').val(currentPoint.lng);
             $('#lat').val(currentPoint.lat);
             console.log(currentPoint)
@@ -151,5 +220,8 @@
         function showMapModal() {
             $('#mapModal').modal()
         }
+
+
+
     </script>
 @endsection
