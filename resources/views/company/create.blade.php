@@ -32,62 +32,13 @@
                         <input type="text" class="form-control" id="phone" name="phone">
                     </div>
                 </div>
-                <div class="input-group row ">
-                    <label class="col-sm-2 col-form-label" for="inputGroupSelect01">Options</label>
-                    <div class="col-sm-8 row">
-                        <div class="col-sm-4">
-                            <select name="input_province" id="input_province" class="form-control">
-                                <option value="">--请选择--</option>
-                                <option value="">--请选择--</option>
-                                <option value="">--请选择--</option>
-                                <option value="">--请选择--</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <select name="input_city" id="input_city" class="form-control">
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <select name="input_area" id="input_area" class="form-control">
-                                <option value=""></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <i class="fa fa-power-off"></i>
-                        <svg class="bi bi-alert-triangle text-success" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            ...
-                        </svg>
-                        Bootstrap Icons
-                        <button type="button" class="btn btn-default btn-lg">
-                            <span class="glyphicon glyphicon-user"></span> User
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="address" class="col-sm-2 col-form-label input-group-prepend">地址</label>
-{{--                    <div class="col-sm-8">--}}
-                        <select class="custom-select input-group-prepend" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <select class="custom-select input-group-prepend" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-{{--                    </div>--}}
-                </div>
                 <div class="form-group row" onclick="showMapModal()">
                     <label for="address" class="col-sm-2 col-form-label">地址</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="address" name="address">
                         <input type="text" hidden id="lng" name="lng">
                         <input type="text" hidden id="lat" name="lat">
+                        <div style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;"> <i class="fa fa-map-marker fa-lg"></i></div>
                     </div>
                 </div>
                 <div class="form-group row">

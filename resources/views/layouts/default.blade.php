@@ -11,6 +11,9 @@
         .anchorBL {
             display: none;
         }
+        .modal-open {
+        　　overflow: auto !important;
+        }
     </style>
 </head>
 <body>
