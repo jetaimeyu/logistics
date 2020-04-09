@@ -55,7 +55,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content" style="height: 500px;width: 1000px">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="mapModalTitle">位置选择</h5>
+                        <h5 class="modal-title" id="mapModalTitle">地址选择</h5>
                         <button class="btn-sm btn-primary btn" onclick="getUserLocation()" style="margin-left: 20px">
                             定位到当前位置
                         </button>
@@ -149,6 +149,11 @@
                     map.addOverlay(mk);
                     map.panTo(r.point);
                     geoc.getLocation(r.point, function (rs) {
+                        console.log('选点地址信息',rs);
+                        var addComponent= rs.addressComponents;
+                        province = addComponent.province;
+                        city=addComponent.city;
+                        district= addComponent.district;
                         showInfoWindow(mk, rs.address);
                     });
                 }
