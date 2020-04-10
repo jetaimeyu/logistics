@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::namespace('Home')->group(function (){
+    Route::get('city',function (){
+       $city = \Illuminate\Support\Facades\DB::table('cities')->paginate();
+       return view('pages/city', ['city'=>$city]);
+    });
     //首页
     Route::get('/', 'IndexController@index');
     //登录页面
