@@ -26,6 +26,6 @@
     </div>
 
 </div>
-
+@yield('scriptsAfterJs')
 </body>
 </html>

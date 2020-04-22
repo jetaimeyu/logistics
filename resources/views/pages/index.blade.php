@@ -2,7 +2,7 @@
 @section('title', '首页')
 @section('content')
     <div class="row">
-     {{$user->company->comp_name}}
+        home
     </div>
     <script>
         var result = [];

@@ -1,54 +1,61 @@
 @extends('layouts.default')
-@section('title', '信息编辑')
+@section('title', ($user->id?'企业信息编辑':'新增企业信息') )
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h5>信息编辑</h5>
+            <h5>{{$user->id?'企业信息编辑':'新增企业信息'}} </h5>
         </div>
+        @include('shared._errors')
         <div class="card-body">
-            <form class="" action="{{route('company.store')}}" method="post" id="company-create">
-                @csrf
-                <div class="form-group row">
-                    <label for="compName" class="col-sm-2 col-form-label">名称</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="compName" name="compName">
+            @if($user->id)
+                <form class="" action="{{route('company.update', ['companyInfo'=>$user->company->id])}}" method="post" id="company-create">
+                    @method('put')
+            @else
+                <form class="" action="{{route('company.store')}}" method="post" id="company-create">
+            @endif
+                    @csrf
+                    <div class="form-group row">
+                        <label for="compName" class="col-sm-2 col-form-label">名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="compName" name="comp_name" value="{{ old('comp_name', $user->company->compName) }}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="contact" class="col-sm-2 col-form-label">联系人</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="contact" name="contact">
+                    <div class="form-group row">
+                        <label for="contact" class="col-sm-2 col-form-label">联系人</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="contact" name="contact" value="{{ old('contact', $user->company->contact) }}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="tel" class="col-sm-2 col-form-label">座机</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="tel" name="tel">
+                    <div class="form-group row">
+                        <label for="tel" class="col-sm-2 col-form-label">座机</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="tel" name="tel" value="{{ old('tel', $user->company->tel)}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="phone" class="col-sm-2 col-form-label">手机</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="phone" name="phone">
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">手机</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $user->company->phone)}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row" onclick="showMapModal()">
-                    <label for="address" class="col-sm-2 col-form-label">地址</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="address" name="address">
-                        <input type="text" hidden id="lng" name="lng">
-                        <input type="text" hidden id="lat" name="lat">
-                        <div style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;"> <i class="fa fa-map-marker fa-lg"></i></div>
+                    <div class="form-group row" onclick="showMapModal()">
+                        <label for="address" class="col-sm-2 col-form-label">地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $user->company->address)}}">
+                            <input type="text" hidden id="longitude" name="longitude" value="{{ old('longitude', $user->company->longitude)}}">
+                            <input type="text" hidden id="latitude" name="latitude" value="{{ old('latitude', $user->company->latitude)}}">
+                            <div style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;">
+                                <i class="fa fa-map-marker fa-lg"></i></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="addressDetail" name="addressDetail">
+                    <div class="form-group row">
+                        <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="detail_address" name="detail_address" value="{{ old('detail_address', $user->company->detailAddress)}}">
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
-            </form>
+                    <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
+                </form>
         </div>
         <!-- MapModal -->
         <div class="modal fade bd-example-modal-lg" id="mapModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
@@ -73,34 +80,18 @@
             </div>
         </div>
     </div>
-
-{{--    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">--}}
-{{--        <div class="toast" style="position: absolute; top: 0; right: 0;">--}}
-{{--            <div class="toast-header">--}}
-{{--                <strong class="mr-auto">Bootstrap</strong>--}}
-{{--                <small>11 mins ago</small>--}}
-{{--                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">--}}
-{{--                    <span aria-hidden="true">&times;</span>--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--            <div class="toast-body">--}}
-{{--                Hello, world! This is a toast message.--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-    <!-- MapModalEnd -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
     <script>
         $(function () {
-            $("#submit-button").click(function(){
-                $(this).attr("disabled","true"); //设置变灰按钮
+            $("#submit-button").click(function () {
+                $(this).attr("disabled", "true"); //设置变灰按钮
                 $("#company-create").submit();//提交表单
-                setTimeout("$('#submit').removeAttr('disabled')",3000); //设置三秒后提交按钮 显示
+                setTimeout("$('#submit').removeAttr('disabled')", 3000); //设置三秒后提交按钮 显示
             })
         })
     </script>
     <script>
-        var map, geoc, mk,currentPoint,province,city,district, currentAddress;
+        var map, geoc, mk, currentPoint, province, city, district, currentAddress;
         $(function () {
             map = new BMap.Map("container", {enableMapClick: false});
             var point = new BMap.Point(117.03233899835905, 36.68278473);
@@ -112,20 +103,19 @@
                 map.clearOverlays();
                 var lng = e.point.lng;
                 var lat = e.point.lat;
-
                 //创建标注位置
                 var pt = new BMap.Point(lng, lat);
-                currentPoint= pt;
+                currentPoint = pt;
                 var marker2 = new BMap.Marker(pt);  // 创建标注
                 map.addOverlay(marker2);
                 // 将标注添加到地图中
                 // map.panTo(pt);
                 geoc.getLocation(pt, function (rs) {
-                    console.log('选点地址信息',rs);
-                    var addComponent= rs.addressComponents;
+                    console.log('选点地址信息', rs);
+                    var addComponent = rs.addressComponents;
                     province = addComponent.province;
-                    city=addComponent.city;
-                    district= addComponent.district;
+                    city = addComponent.city;
+                    district = addComponent.district;
                     // currentAddress= rs.address
                     showInfoWindow(marker2, rs.address);
                 });
@@ -145,15 +135,15 @@
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
                     var mk = new BMap.Marker(r.point);
-                    currentPoint= r.point
+                    currentPoint = r.point
                     map.addOverlay(mk);
                     map.panTo(r.point);
                     geoc.getLocation(r.point, function (rs) {
-                        console.log('选点地址信息',rs);
-                        var addComponent= rs.addressComponents;
+                        console.log('选点地址信息', rs);
+                        var addComponent = rs.addressComponents;
                         province = addComponent.province;
-                        city=addComponent.city;
-                        district= addComponent.district;
+                        city = addComponent.city;
+                        district = addComponent.district;
                         showInfoWindow(mk, rs.address);
                     });
                 }
@@ -166,18 +156,14 @@
                 return;
             }
             $('#mapModal').modal('hide');
-            $('#address').val(province+city+district);
-            $('#addressDetail').val(currentAddress);
-            $('#lng').val(currentPoint.lng);
-            $('#lat').val(currentPoint.lat);
-            console.log(currentPoint)
+            $('#address').val(province + city + district);
+            $('#detail_address').val(currentAddress);
+            $('#longitude').val(currentPoint.lng);
+            $('#latitude').val(currentPoint.lat);
         }
 
         function showMapModal() {
             $('#mapModal').modal()
         }
-
-
-
     </script>
 @endsection

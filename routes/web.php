@@ -36,6 +36,11 @@ Route::namespace('Home')->group(function (){
     Route::middleware('auth:web')->group(function (){
         Route::get('company/create', 'CompanyController@create')->name('company.create');
         Route::post('company/store', 'CompanyController@store')->name('company.store');
+        Route::put('company/update/{companyInfo}', 'CompanyController@update')->name('company.update');
+        Route::get('personal/index', 'PersonalController@index')->name('personal.index');
+        Route::put('personal/edit', 'PersonalController@edit')->name('personal.edit');
+        Route::get('company/edit', 'CompanyController@edit')->name('company.edit');
+
     });
 
 });

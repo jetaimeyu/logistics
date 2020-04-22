@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\companyInfoRequest;
+use App\Models\CompanyInfo;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -13,22 +15,37 @@ class CompanyController extends Controller
         return view('company/create');
     }
 
-    public function store(Request $request)
+    public function edit(){
+        return view('company/create', ['user'=>auth()->user()]);
+    }
+
+    public function store(companyInfoRequest $request)
     {
-        dd($request);
-        $this->validate($request, [
-            'phone'=>'required|regex:/^1[34578][0-9]{9}$/|exists:users,phone',
-            'verificationCode'=>'required',
-            'password'=>'required|confirmed|min:6'
-        ], [],['phone'=>'手机号', 'verificationCode'=>'手机验证码']);
-        //对比手机验证码
-        if (!hash_equals($request->verificationCode, (string) \session('verificationCode'))){
-            return back()->withErrors('手机验证码不正确')->withInput();
-        }
-        $user = User::where('phone', $request->phone)->update(['password'=> bcrypt($request->password)]);
-        if ($user){
-            session()->flash('success', '修改成功');
-            return redirect('/login');
-        }
+//        CompanyInfo::created([
+//
+//        ]);
+//        'compName' => 'required',
+//            'contact' => 'required',
+//            'phone' => 'required',
+//            'tel' => 'required',
+//            'address' => 'required',
+//            'detail_address' => 'required',
+//            'latitude' => 'required',
+//            'longitude' => 'required',
+    }
+
+    public function update(CompanyInfo $companyInfo, companyInfoRequest $request)
+    {
+        $companyInfo->update($request->only([
+             'comp_name',
+            'contact',
+            'phone' ,
+            'tel' ,
+            'address' ,
+            'detail_address',
+            'latitude',
+            'longitude',
+        ]));
+        return redirect()->route('personal.index');
     }
 }

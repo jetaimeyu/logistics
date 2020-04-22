@@ -27,7 +27,7 @@
                     {{auth()->user()->name}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">个人中心</a>
+                    <a class="dropdown-item" href="{{route('personal.index')}}">个人中心</a>
                     <form method="post" action="{{route('logout')}}">
                         @csrf
                         @method('delete')
