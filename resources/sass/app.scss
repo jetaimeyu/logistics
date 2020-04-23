@@ -7,8 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import "~font-awesome/scss/font-awesome";
-
 nav.navbar.navbar-dark{
   margin-bottom: 20px;
 }
+
+.personal-index-page{
+  font-size: 1.2rem;
+}
+

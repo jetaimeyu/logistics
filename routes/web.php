@@ -40,7 +40,7 @@ Route::namespace('Home')->group(function (){
         Route::get('personal/index', 'PersonalController@index')->name('personal.index');
         Route::put('personal/edit', 'PersonalController@edit')->name('personal.edit');
         Route::get('company/edit', 'CompanyController@edit')->name('company.edit');
-
+        Route::get('logistic/create','LogisticController@create')->name('logistic.create');
     });
 
 });
