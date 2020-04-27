@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogisticModelsTable extends Migration
+class CreateLogisticsLinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLogisticModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logistic_models', function (Blueprint $table) {
+        Schema::create('logistics_lines', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -23,6 +23,8 @@ class CreateLogisticModelsTable extends Migration
             $table->string('end_address');
             $table->string('end_contact');
             $table->string('end_phone');
+            $table->string('description')->comment('线路描述');
+            $table->smallInteger('state')->default(0)->comment('审核状态0未审核 1已审核 2审核失败');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +37,6 @@ class CreateLogisticModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logistic_models');
+        Schema::dropIfExists('logistics_lines');
     }
 }

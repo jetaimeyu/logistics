@@ -12,32 +12,34 @@ class CompanyController extends Controller
     //
     public function create()
     {
-        return view('company/create');
+        return view('company/create', ['company'=>new CompanyInfo()]);
     }
 
     public function edit(){
-        return view('company/create', ['user'=>auth()->user()]);
+        return view('company/create', ['company'=>auth()->user()->company]);
     }
 
     public function store(companyInfoRequest $request)
     {
-//        CompanyInfo::created([
-//
-//        ]);
-//        'compName' => 'required',
-//            'contact' => 'required',
-//            'phone' => 'required',
-//            'tel' => 'required',
-//            'address' => 'required',
-//            'detail_address' => 'required',
-//            'latitude' => 'required',
-//            'longitude' => 'required',
+        if (! $request->user()->company){
+            $request->user()->company()->create($request->only([
+                'comp_name',
+                'contact',
+                'phone' ,
+                'tel' ,
+                'address' ,
+                'detail_address',
+                'latitude',
+                'longitude',
+            ]));
+        }
+        return redirect()->route('personal.index');
     }
 
     public function update(CompanyInfo $companyInfo, companyInfoRequest $request)
     {
         $companyInfo->update($request->only([
-             'comp_name',
+            'comp_name',
             'contact',
             'phone' ,
             'tel' ,

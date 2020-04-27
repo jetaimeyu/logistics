@@ -10890,3 +10890,16 @@ nav.navbar.navbar-dark {
   font-size: 1.2rem;
 }
 
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  background-color: #343a40;
+  bottom: 0;
+}
+
+.footer .float-right {
+  color: #FFF;
+  margin: 19px;
+}
+

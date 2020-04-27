@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\LogisticModel;
+use App\Models\LogisticsLine;
 use Faker\Generator as Faker;
 
-$factory->define(LogisticModel::class, function (Faker $faker) {
+$factory->define(LogisticsLine::class, function (Faker $faker) {
     return [
         //
     ];

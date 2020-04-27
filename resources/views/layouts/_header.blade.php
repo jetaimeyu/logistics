@@ -47,21 +47,11 @@
         @endif
     </nav>
 </div>
-<script>
-    $('#nav-tabs a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-
-
-    // var str = "";
-    // Array.from($("tbody").children).map((tr, index)=>{
-    //     if(index>2 && index<3216){
-    //         console.log(tr.children[1].innerText.trim(), tr.children[2].innerText.trim())
-    //         if(tr.children[1]){
-    //             str = str + "['code'=>'" + tr.children[1].innerText.trim() +"','name'=>'"+tr.children[2].innerText.trim()+"'],"
-    //         }
-    //     }
-    // })
-    // console.log(str.substring(0,str.length-1))
-</script>
+@section('scriptAfterJS')
+    <script>
+        $('#nav-tabs a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+@endsection
