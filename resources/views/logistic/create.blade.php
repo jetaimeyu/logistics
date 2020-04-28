@@ -4,7 +4,9 @@
     <div class="card">
         <div class="card-header">
             <h5>新增</h5>
+            @include('shared._errors')
         </div>
+
         <div class="card-body">
             <form action="{{route('logistic.store')}}" method="post">
                 @csrf
@@ -81,8 +83,6 @@
                         <input type="text" hidden name="end_district" v-model="district">
                     </div>
                 </address-create-and-edit>
-
-
                 <div class="form-group row">
                     <label for="compName" class="col-sm-2 col-form-label text-md-right">联系人</label>
                     <div class="col-sm-8">
@@ -99,11 +99,11 @@
                 <div class="form-group row">
                     <label for="compName" class="col-sm-2 col-form-label text-md-right">描述</label>
                     <div class="col-sm-8">
-                        <textarea type="text" class="form-control" id="end_phone" name="end_phone" value="{{ old('end_phone', $logisticLine->description) }}"></textarea>
+                        <textarea type="text" class="form-control" id="description" name="description" value="{{ old('description', $logisticLine->description) }}"></textarea>
                     </div>
                 </div>
+                <button class="btn btn-primary" type="submit">提交</button>
             </form>
         </div>
-
     </div>
 @endsection

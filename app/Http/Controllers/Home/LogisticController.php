@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LogisticsLineRequest;
 use App\Models\LogisticsLine;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,9 @@ class LogisticController extends Controller
         return view('logistic.create', ['logisticLine'=> new LogisticsLine()]);
     }
 
-    public function store()
+    public function store(LogisticsLineRequest $request)
     {
+        dd($request);
 
     }
 
