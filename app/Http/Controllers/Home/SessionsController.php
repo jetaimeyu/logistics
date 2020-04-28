@@ -25,7 +25,7 @@ class SessionsController extends Controller
         $credentials = $this->validate($request, [
             'phone' => 'required|regex:/^1[345789][0-9]{9}$/',
             'password' => 'required'
-        ]);
+        ], [], ['phone'=>'手机号']);
         if (Auth::attempt($credentials, $request->has('remember'))) {
             session()->flash('success', '欢迎回来');
             return redirect('/');

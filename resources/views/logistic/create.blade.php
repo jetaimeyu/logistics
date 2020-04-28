@@ -6,13 +6,12 @@
             <h5>新增</h5>
             @include('shared._errors')
         </div>
-
         <div class="card-body">
             <form action="{{route('logistic.store')}}" method="post">
                 @csrf
                 <address-create-and-edit  inline-template>
                     <div  class="form-group">
-                        <select-district  inline-template @change="onDistrictChanged">
+                        <select-district  inline-template @change="onDistrictChanged" :init-value="{{json_encode([old('start_province', $logisticLine->start_province),old('start_city', $logisticLine->start_city),old('start_district', $logisticLine->start_district)])}}">
                             <div class="form-row">
                                 <label class="col-form-label col-sm-2 text-md-right" style="padding-right: 20px">出发地</label>
                                 <div class="col-sm-3">
@@ -35,9 +34,9 @@
                                 </div>
                             </div>
                         </select-district>
-                        <input type="text" hidden name="start_province" v-model="province">
-                        <input type="text" hidden name="start_city" v-model="city">
-                        <input type="text" hidden name="start_district" v-model="district">
+                        <input type="text" name="start_province" v-model="province">
+                        <input type="text" name="start_city" v-model="city">
+                        <input type="text" name="start_district" v-model="district">
                     </div>
                 </address-create-and-edit>
                 <div class="form-group row">
@@ -55,7 +54,7 @@
                 <div style="border: 1px dashed #c1c1c1; margin-bottom: 20px"></div>
                 <address-create-and-edit  inline-template>
                     <div  class="form-group">
-                        <select-district  inline-template @change="onDistrictChanged">
+                        <select-district  inline-template @change="onDistrictChanged"  :init-value="{{json_encode([old('end_province', $logisticLine->end_province),old('end_city', $logisticLine->end_city),old('end_district', $logisticLine->end_district)])}}">
                             <div class="form-row">
                                 <label class="col-form-label col-sm-2 text-md-right" style="padding-right: 20px">目的地</label>
                                 <div class="col-sm-3">

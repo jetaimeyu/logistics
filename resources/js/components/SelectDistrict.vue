@@ -41,6 +41,7 @@
                 if (!this.cities[this.cityId]) {
                     this.cityId = '';
                 }
+                this.$emit('change', [this.provinces[this.provinceId]]);
             },
             // 当选择的市发生改变时触发
             cityId(newVal) {
@@ -55,6 +56,7 @@
                 if (!this.districts[this.districtId]) {
                     this.districtId = '';
                 }
+                this.$emit('change', [this.provinces[this.provinceId], this.cities[this.cityId]]);
             },
             // 当选择的区发生改变时触发
             districtId() {
