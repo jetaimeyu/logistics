@@ -17,10 +17,14 @@ class CreateLogisticsLinesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('start_address');
+            $table->string('start_province');
+            $table->string('start_city');
+            $table->string('start_district');
             $table->string('start_contact');
             $table->string('start_phone');
-            $table->string('end_address');
+            $table->string('end_province');
+            $table->string('end_city');
+            $table->string('end_district');
             $table->string('end_contact');
             $table->string('end_phone');
             $table->string('description')->comment('线路描述');
