@@ -17,17 +17,31 @@ class LogisticController extends Controller
 
     public function store(LogisticsLineRequest $request)
     {
-        dd($request);
-
+        $request->user()->logisticsLine()->create($request->only([
+            'start_province',
+            'start_city',
+            'start_district',
+            'start_contact',
+            'start_phone',
+            'end_province',
+            'end_city',
+            'end_district',
+            'end_contact',
+            'end_phone',
+            'description',
+        ]));
+        return redirect()->route('personal.index');
     }
 
-    public function edit()
+    public function edit(LogisticsLine $logisticsLine)
     {
-
+        $this->authorize('own', $logisticsLine);
     }
 
-    public function destroy()
+    public function destroy(LogisticsLine $logisticsLine)
     {
-
+        $this->authorize('own', $logisticsLine);
+        $logisticsLine->delete();
+        return [];
     }
 }

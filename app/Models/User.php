@@ -52,4 +52,8 @@ class User extends Authenticatable implements  JWTSubject
     public function company(){
         return $this->hasOne('App\Models\CompanyInfo');
     }
+
+    public function logisticsLine(){
+        return $this->hasMany(LogisticsLine::class);
+    }
 }

@@ -42,7 +42,11 @@ Route::namespace('Home')->group(function () {
         Route::get('company/edit', 'CompanyController@edit')->name('company.edit');
         //专线相关
         Route::get('logistic/create', 'LogisticController@create')->name('logistic.create');
-        Route::post('logistic.store', 'LogisticController@store')->name('logistic.store');
+        Route::post('logistic/store', 'LogisticController@store')->name('logistic.store');
+        Route::delete('logistic/destroy', 'LogisticController@destroy')->name('logistic.destroy');
+        Route::get('logistic/edit', 'LogisticController@edit')->name('logistic.edit');
+        Route::put('logistic/update/{logistics_line}', 'LogisticController@update')->name('logistic.update');
+
     });
 
 });

@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                         </select-district>
-                        <input type="text" name="start_province" v-model="province">
-                        <input type="text" name="start_city" v-model="city">
-                        <input type="text" name="start_district" v-model="district">
+                        <input type="text" hidden name="start_province" v-model="province">
+                        <input type="text" hidden name="start_city" v-model="city">
+                        <input type="text" hidden name="start_district" v-model="district">
                     </div>
                 </address-create-and-edit>
                 <div class="form-group row">
