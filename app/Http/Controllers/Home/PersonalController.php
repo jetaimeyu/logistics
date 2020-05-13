@@ -11,7 +11,8 @@ class PersonalController extends Controller
     //
     public function index()
     {
-        return view('personal.index', ['user'=>auth()->user()]);
+
+        return view('personal.index', ['user'=>auth()->user(), 'logisticsLine'=>auth()->user()->logisticsLine]);
     }
 
     public function edit(Request $request)

@@ -6,10 +6,12 @@
             <nav class="navbar navbar-light bg-light">
                 <ul class="nav d-flex flex-column border-0">
                     <li class="active nav-item m-2">
-                        <a class="breadcrumb-item active text-decoration-none" href="#user" rel="external nofollow" data-toggle="tab">个人信息</a>
+                        <a class="breadcrumb-item active text-decoration-none" href="#user" rel="external nofollow"
+                           data-toggle="tab">个人信息</a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="breadcrumb-item text-decoration-none" href="#company" rel="external nofollow" data-toggle="tab">企业信息</a>
+                        <a class="breadcrumb-item text-decoration-none" href="#company" rel="external nofollow"
+                           data-toggle="tab">企业信息</a>
                     </li>
                 </ul>
             </nav>
@@ -17,11 +19,14 @@
         <div class="col-md-9 tab-content">
             <div class="tab-pane active" id="user">
                 <div class="row m-3 align-middle">
-                    <div class="col-md-2 text-md-right align-middle" >
-                        用户名</div>
+                    <div class="col-md-2 text-md-right align-middle">
+                        用户名
+                    </div>
                     <div class="col-md-8">
                         {{$user->name}}
-                        <a href="#" onclick="changeUserName()" class="text-decoration-none d-inline-block"><i class="iconfont icon-edit" style="font-size: 1.4rem;line-height: 1.4rem; margin-left: 20px" title="修改用户名"></i></a>
+                        <a href="#" onclick="changeUserName()" class="text-decoration-none d-inline-block"><i
+                                class="iconfont icon-edit"
+                                style="font-size: 1.4rem;line-height: 1.4rem; margin-left: 20px" title="修改用户名"></i></a>
                     </div>
 
                 </div>
@@ -71,8 +76,8 @@
                 },
             }).then(function (message) {
                 console.log(message)
-                if (!!message){
-                    axios.put('edit', {'name':message}).then(function (res) {
+                if (!!message) {
+                    axios.put('edit', {'name': message}).then(function (res) {
                         location.reload();
                     })
                 }

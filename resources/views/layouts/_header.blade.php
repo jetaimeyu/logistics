@@ -28,6 +28,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="{{route('personal.index')}}">个人中心</a>
+                    <a class="dropdown-item" href="{{route('logistic.index')}}">我的专线</a>
                     <form method="post" action="{{route('logout')}}">
                         @csrf
                         @method('delete')

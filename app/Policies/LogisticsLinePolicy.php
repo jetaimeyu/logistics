@@ -22,6 +22,6 @@ class LogisticsLinePolicy
 
     public function own(User $user, LogisticsLine $logisticsLine)
     {
-        return $user->id == $logisticsLine->userId;
+        return $user->id == $logisticsLine->user_id;
     }
 }

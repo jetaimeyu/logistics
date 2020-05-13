@@ -1,13 +1,18 @@
 @extends('layouts.default')
-@section('title', '新增')
+@section('title', ($logisticLine->id?'编辑':'新增').'专线信息')
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h5>新增</h5>
+            <h5>{{$logisticLine->id?'编辑':'新增'}}专线信息</h5>
             @include('shared._errors')
         </div>
         <div class="card-body">
-            <form action="{{route('logistic.store')}}" method="post">
+            @if($logisticLine->id)
+                <form action="{{route('logistic.update',['logistics_line'=>$logisticLine])}}" method="post">
+                @method('put')
+            @else
+                <form action="{{route('logistic.store')}}" method="post">
+            @endif
                 @csrf
                 <address-create-and-edit  inline-template>
                     <div  class="form-group">
@@ -98,7 +103,7 @@
                 <div class="form-group row">
                     <label for="compName" class="col-sm-2 col-form-label text-md-right">描述</label>
                     <div class="col-sm-8">
-                        <textarea type="text" class="form-control" id="description" name="description" value="{{ old('description', $logisticLine->description) }}"></textarea>
+                        <textarea type="text" class="form-control" id="description" name="description" value="">{{ old('description', $logisticLine->description) }}</textarea>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">提交</button>
