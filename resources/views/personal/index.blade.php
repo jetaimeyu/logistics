@@ -59,6 +59,10 @@
                 <div class="m-3 col-md-10" style="text-align: center">
                     <a href="{{ route('company.edit', ['user' => $user->id]) }}" class="btn btn-primary">修改</a>
                 </div>
+                @else
+                    <div class="m-3 col-md-10" style="text-align: center">
+                        <a href="{{ route('company.create')}}" class="btn btn-primary">新增</a>
+                    </div>
                 @endif
             </div>
         </div>
