@@ -10,7 +10,7 @@
                 @include('shared._errors')
                 {{--验证码错误信息begin--}}
                 <div class="alert alert-danger fade show" style="display: none;" id="yc">
-                    <button type="button" class="close" aria-label="Close" onclick="$('#yc').hide()" ;>
+                    <button type="button" class="close" aria-label="Close" onclick="$('#yc').hide()">
                         <span aria-hidden="true">×</span></button>
                     <ul class="margin-bottom-none padding-left-lg" id="li1">
                     </ul>
@@ -28,7 +28,8 @@
                     <div class="form-group">
                         <label for="captcha">图片验证码</label>
                         <div class="input-group mb-3">
-                            <input type="text" style="height: 40px;" class="form-control" id="captcha" name="captcha" value="{{old('captcha')}}">
+                            <input type="text" style="height: 40px;" class="form-control" id="captcha" name="captcha"
+                                   value="{{old('captcha')}}">
                             <a href="#" onclick="updateImg()" style="margin-left: 10px;">
                                 <img src="{{url('captcha/1')}}" id="captchaImg"/></a>
                         </div>
@@ -36,8 +37,10 @@
                     <div class="form-group">
                         <label for="verificationCode">手机验证码</label>
                         <div class="input-group mb-3">
-                            <input type="text" style="height: 40px;" class="form-control" id="verificationCode" name="verificationCode" value="{{old('verificationCode')}}">
-                            <button style="margin-left: 10px;" type="button" id="getCodeButton" onclick="getVerificationCode(this)">
+                            <input type="text" style="height: 40px;" class="form-control" id="verificationCode"
+                                   name="verificationCode" value="{{old('verificationCode')}}">
+                            <button style="margin-left: 10px;" type="button" id="getCodeButton"
+                                    onclick="getVerificationCode(this)">
                                 获取验证码
                             </button>
                             {{--                            <a href="#" onclick="updateImg()" style="margin-left: 10px;"> <img src="{{url('captcha/1')}}" id="captchaImg" /></a>--}}
@@ -45,17 +48,21 @@
                     </div>
                     <div class="form-group">
                         <label for="password">密码</label>
-                        <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
+                        <input type="password" class="form-control" id="password" name="password"
+                               value="{{old('password')}}">
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">重复密码</label>
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}">
+                        <input type="password" class="form-control" id="password_confirmation"
+                               name="password_confirmation" value="{{old('password_confirmation')}}">
                     </div>
                     <button type="submit" class="btn btn-primary">提交</button>
                 </form>
             </div>
         </div>
     </div>
+@endsection
+@section("scriptsAfterJs")
     <script>
         var timeCount = 60;
 

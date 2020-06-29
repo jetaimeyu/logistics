@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('build {project}', function ($project) {
+    if ($this->confirm('Do you wish to do:[y|n]?')){
+        for ($i=0;$i<10000000000;$i++){
+            echo 12;
+        }
+        $this->info("Building {$project}!");
+    }else{
+        $this->info('canceled');
+    }
+
+});
