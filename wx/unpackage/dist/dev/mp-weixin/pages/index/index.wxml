@@ -1,0 +1,1 @@
+<view class="container"><view><text class="intro">{{userInfo.user_info.id+userInfo.user_info.name+userInfo.user_info.phone}}</text></view></view>
