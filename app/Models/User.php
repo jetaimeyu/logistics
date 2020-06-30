@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use phpDocumentor\Reflection\Types\Array_;
+use Psy\Util\Str;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements  JWTSubject
@@ -26,7 +28,7 @@ class User extends Authenticatable implements  JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','weixin_openid', 'weixin_unionid'
     ];
 
     /**
@@ -38,6 +40,10 @@ class User extends Authenticatable implements  JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    public function addHidden($array)
+    {
+        $this->hidden = array_merge($this->hidden, $array);
+    }
 
     public function getJWTIdentifier()
     {

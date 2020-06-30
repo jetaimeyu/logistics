@@ -42,10 +42,7 @@ Route::prefix('v1')
 
             Route::get('users/{user}', 'UsersController@show')->name('users.show');
             Route::middleware('auth:api')->group(function () {
-
                 Route::get('user', 'UsersController@me')->name('user.show');
-
-
             });
         });
 

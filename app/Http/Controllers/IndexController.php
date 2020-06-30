@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\JWTAuth;
 
 class IndexController extends Controller
 {

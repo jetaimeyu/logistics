@@ -22,16 +22,18 @@ class AuthorizationsController extends Controller
      */
     public function store(AuthorizationsRequest $request)
     {
-        $username =$request->username;
-        filter_var($username,FILTER_VALIDATE_EMAIL)?
-            $credentials['email'] = $username:
+        $username = $request->username;
+        $password = $request->password;
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
             $credentials['phone'] = $username;
-        $credentials['password'] = $request->password;
-        if (!$token = auth('api')->attempt($credentials)){
+        $credentials['password'] = $password;
+        if (!$token = auth('api')->attempt($credentials)) {
             throw new AuthorizationException('用户名或密码错误');
         }
         return $this->responseWithToken($token);
     }
+
     /**
      * 第三方登录
      * @param $type
@@ -42,55 +44,56 @@ class AuthorizationsController extends Controller
     public function socialStore($type, SocialAuthorizationRequest $request)
     {
         $driver = Socialite::driver($type);
-        try{
-            if ($code= $request->code){
+        try {
+            if ($code = $request->code) {
                 $response = $driver->getAccessTokenResponse($code);
                 $token = Arr::get($response, 'access_token');
 
-            }else{
-                $token =$request->access_token;
-                if ($type=='weixin'){
+            } else {
+                $token = $request->access_token;
+                if ($type == 'weixin') {
                     $driver->setOpenId($request->openid);
                 }
             }
             $authUser = $driver->userFromToken($token);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             throw new AuthenticationException('参数错误， 未获取用户信息');
         }
-        switch ($type){
+        switch ($type) {
             case 'weixin':
-                $unionId = $authUser->offsetExists('unionid')?$authUser->offsetGet('unionid'):null;
-                if ($unionId){
-                    $user = User::where('weixin_unionid',$unionId)->first;
-                }else{
+                $unionId = $authUser->offsetExists('unionid') ? $authUser->offsetGet('unionid') : null;
+                if ($unionId) {
+                    $user = User::where('weixin_unionid', $unionId)->first;
+                } else {
                     $user = User::where('weixin_openid', $authUser->getId())->first();
                 }
-                if (!$user){
+                if (!$user) {
                     $user = User::create([
-                        'name'=>$authUser->getNickname(),
-                        'avatar'=>$authUser->getAvatar(),
-                        'weixin_openid'=>$authUser->getId(),
-                        'weixin_unionid'=>$unionId,
+                        'name' => $authUser->getNickname(),
+                        'avatar' => $authUser->getAvatar(),
+                        'weixin_openid' => $authUser->getId(),
+                        'weixin_unionid' => $unionId,
                     ]);
                 }
                 break;
         }
-        $token= auth('api')->login($user);
+        $token = auth('api')->login($user);
         return $this->responseWithToken($token);
 
     }
 
     /**
-     * 返回token信息
+     * 返回token信息 与用户信息
      * @param $token
      * @return \Illuminate\Http\JsonResponse
      */
     public function responseWithToken($token)
     {
         return response()->json([
-            'access_token'=>$token,
-            'token_type'=>'Bearer',
-            'expires_in'=>auth('api')->factory()->getTTL()*60
+            'user_info' => auth('api')->user(),
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
 
     }

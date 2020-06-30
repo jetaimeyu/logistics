@@ -51,4 +51,4 @@ Route::namespace('Home')->group(function () {
 
 });
 
-//Route::get('/signup', )
+//Route::get('/', "IndexController@index");

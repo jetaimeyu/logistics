@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -53,12 +54,13 @@ class Handler extends ExceptionHandler
     {
         //如果接口是api请求
         if ($request->is('api/*')) {
-            if ($exception instanceof \Illuminate\Validation\ValidationException) {
-                $result = [
-                    'message' => $exception->getMessage()
-                ];
-                return response()->json($result);
-            }
+//            if ($exception instanceof \Illuminate\Validation\ValidationException) {
+//                $result = [
+//                    'message' => $exception->getMessage()
+//                ];
+//                return response()->json($result);
+//            }
+            return response()->json(['message'=>$exception->getMessage()], 403);
         }
         return parent::render($request, $exception);
     }
