@@ -106,7 +106,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  "uni-calendar": () =>
+    Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 23))
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -142,22 +145,33 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCalendar = function uniCalendar() {return Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 23));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
-    return {
-      href: 'https://uniapp.dcloud.io/collocation/pages?id=easycom',
-      userInfo: {} };
-
+    return {};
   },
+  components: {
+    uniCalendar: uniCalendar },
+
   created: function created() {
     console.log("created");
     this.login();
@@ -166,6 +180,12 @@ var _default =
     console.log("onload");
   },
   methods: {
+    open: function open() {
+      this.$refs.calendar.open();
+    },
+    confirm: function confirm(e) {
+      console.log(e);
+    },
     //登录
     login: function login() {
       var that = this;
@@ -182,6 +202,23 @@ var _default =
         fail: function fail(err) {
           console.log("请求失败");
         } });
+
+    },
+    getUser: function getUser() {
+      var that = this;
+      uni.request({
+        url: "https://jetaime.top/api/v1/user",
+        method: "GET",
+        header: {
+          Authorization: that.$store.state.userInfo.token_type + " " + that.$store.state.userInfo.access_token },
+
+        success: function success(res) {
+          console.log("获取数据", res);
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

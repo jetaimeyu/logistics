@@ -1,5 +1,6 @@
 <template>
-	<view :class="{ 'uni-card--full': isFull === true || isFull === 'true', 'uni-card--shadow': isShadow === true || isShadow === 'true' }" class="uni-card" @click="onClick">
+	<view :class="{ 'uni-card--full': isFull === true || isFull === 'true', 'uni-card--shadow': isShadow === true || isShadow === 'true' }"
+	 class="uni-card" @click="onClick">
 		<view v-if="mode === 'style'" class="uni-card__thumbnailimage">
 			<view class="uni-card__thumbnailimage-box">
 				<image class="uni-card__thumbnailimage-image" :src="thumbnail" mode="aspectFill" />
@@ -38,23 +39,6 @@
 </template>
 
 <script>
-	/**
-	 * Card 卡片
-	 * @description 卡片视图组件
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=22
-	 * @property {String} title 标题文字
-	 * @property {String} extra 标题额外信息
-	 * @property {String} note 标题左侧缩略图
-	 * @property {String} thumbnail 底部信息
-	 * @property {String} mode = [basic|style|title] 卡片模式
-	 * 	@value basic 基础卡片
-	 * 	@value style 图文卡片
-	 * 	@value title 标题卡片
-	 * @property {Boolean} isFull = [true | false] 卡片内容是否通栏，true 时将去除padding值
-	 * @property {Boolean} isShadow = [true | false] 卡片内容是否开启阴影
-	 * @event {Function} click 点击 Card 触发事件
-	 * @example <uni-card title="标题文字" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="额外信息" note="Tips">内容主体，可自定义内容及样式</uni-card>
-	 */
 	export default {
 		name: 'UniCard',
 		props: {
@@ -98,7 +82,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-card {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -106,10 +90,10 @@
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 		/* #endif */
 		margin: 12px;
-		background-color: #ffffff;
+		background-color: $uni-bg-color;
 		position: relative;
 		flex-direction: column;
-		border-color: #e5e5e5;
+		border-color: $uni-border-color;
 		border-style: solid;
 		border-width: 1px;
 		border-radius: 3px;
@@ -147,13 +131,13 @@
 		left: 0;
 		right: 0;
 		flex-direction: row;
-		padding: 16rpx 24rpx;
-		background-color: rgba(0, 0, 0, 0.4);
+		padding: $uni-spacing-col-base $uni-spacing-col-lg;
+		background-color: $uni-bg-color-mask;
 	}
 
 	.uni-card__thumbnailimage-title-text {
 		flex: 1;
-		font-size: 28rpx;
+		font-size: $uni-font-size-base;
 		color: #fff;
 	}
 
@@ -194,7 +178,7 @@
 	}
 
 	.uni-card__title-content-title {
-		font-size: 28rpx;
+		font-size: $uni-font-size-base;
 		line-height: 22px;
 		lines: 1;
 	}
@@ -211,9 +195,9 @@
 		/* #endif */
 		position: relative;
 		flex-direction: row;
-		padding: 24rpx;
+		padding: $uni-spacing-col-lg;
 		align-items: center;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: $uni-border-color;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 	}
@@ -223,13 +207,13 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		margin-right: 16rpx;
+		margin-right: $uni-spacing-col-base;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
 	.uni-card__header-title-text {
-		font-size: 32rpx;
+		font-size: $uni-font-size-lg;
 		flex: 1;
 		/* #ifndef APP-NVUE */
 		white-space: nowrap;
@@ -240,31 +224,30 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-
 	.uni-card__header-extra-img {
-		height: 40rpx;
-		width: 40rpx;
-		margin-right: 16rpx;
+		height: $uni-img-size-sm;
+		width: $uni-img-size-sm;
+		margin-right: $uni-spacing-col-base;
 	}
 
 	.uni-card__header-extra-text {
 		flex: 1;
-		margin-left: 16rpx;
-		font-size: 28rpx;
+		margin-left: $uni-spacing-col-base;
+		font-size: $uni-font-size-base;
 		text-align: right;
-		color: #999;
+		color: $uni-text-color-grey;
 	}
 
 	.uni-card__content {
-		color: #333;
+		color: $uni-text-color;
 	}
 
 	.uni-card__content--pd {
-		padding: 24rpx;
+		padding: $uni-spacing-col-lg;
 	}
 
 	.uni-card__content-extra {
-		font-size: 28rpx;
+		font-size: $uni-font-size-base;
 		padding-bottom: 10px;
 		color: #999;
 	}
@@ -272,18 +255,18 @@
 	.uni-card__footer {
 		justify-content: space-between;
 		padding: 10px;
-		border-top-color: #e5e5e5;
+		border-top-color: $uni-border-color;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
 
 	.uni-card__footer-text {
-		color: #999;
-		font-size: 28rpx;
+		color: $uni-text-color-grey;
+		font-size: $uni-font-size-base;
 	}
 
 	.uni-card--shadow {
-		border-color: #e5e5e5;
+		border-color: $uni-border-color;
 		border-style: solid;
 		border-width: 1px;
 		/* #ifndef APP-NVUE */
