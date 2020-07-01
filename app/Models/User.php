@@ -10,9 +10,9 @@ use phpDocumentor\Reflection\Types\Array_;
 use Psy\Util\Str;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements  JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable ;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class User extends Authenticatable implements  JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name','phone', 'email', 'password','weixin_openid', 'weixin_unionid'
+        'name', 'phone', 'email', 'password', 'weixin_openid', 'weixin_unionid'
     ];
 
     /**
@@ -29,9 +29,14 @@ class User extends Authenticatable implements  JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','weixin_openid', 'weixin_unionid'
+        'password', 'remember_token', 'weixin_openid', 'weixin_unionid'
     ];
 
+
+    //追加包含在模型的数组与json中
+    protected $appends = [
+        'format_name'
+    ];
     /**
      * The attributes that should be cast to native types.
      *
@@ -39,12 +44,13 @@ class User extends Authenticatable implements  JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime:Y-m-d Y-m-d H:i:s'
     ];
 
 
     /**
      * 为数组 / JSON 序列化准备日期。
-     * @param  \DateTimeInterface  $date
+     * @param  \DateTimeInterface $date
      * @return string
      */
     protected function serializeDate(\DateTimeInterface $date)
@@ -52,13 +58,19 @@ class User extends Authenticatable implements  JWTSubject
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
     }
 
+    public function getFormatNameAttribute()
+    {
+        return $this->name . $this->id;
+    }
 
-    public function  getCreatedTimeAttribute(){
+    public function getCreatedTimeAttribute()
+    {
         return $this->created_at->toJson();
 
-        Carbon:
     }
-    public function  getCreatedTimeTwoAttribute(){
+
+    public function getCreatedTimeTwoAttribute()
+    {
         return $this->created_at->toDateTimeString();
     }
 
@@ -78,11 +90,13 @@ class User extends Authenticatable implements  JWTSubject
         return [];
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->hasOne('App\Models\CompanyInfo');
     }
 
-    public function logisticsLine(){
+    public function logisticsLine()
+    {
         return $this->hasMany(LogisticsLine::class);
     }
 }
