@@ -1,7 +1,7 @@
 <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-            <h5 class="text-white h4">Collapsed content</h5>
+            <h5 class="text-white h4">物流专线查询</h5>
             <span class="text-muted">Toggleable via the navbar brand.</span>
         </div>
     </div>
@@ -9,18 +9,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-{{--            <ul class="nav nav-pills " id="nav-tabs">--}}
-{{--                <li class="nav-item ">--}}
-{{--                    <a class="nav-link active" href="#">嘿嘿</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="#">哈哈哈</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="#">Link</a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-
         @if(Auth::check())
             <div class="dropdown justify-content-end">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

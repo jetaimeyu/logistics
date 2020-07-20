@@ -67,7 +67,6 @@
         // 组件初始化时会调用这个方法
         created() {
             this.setFromValue(this.initValue);
-            console.log(123);
         },
         methods: {
             //
