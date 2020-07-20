@@ -10,7 +10,7 @@
                 @include('shared._errors')
                 {{--验证码错误信息begin--}}
                 <div class="alert alert-danger fade show" style="display: none;" id="yc">
-                    <button type="button" class="close" aria-label="Close" onclick="$('#yc').hide()" ;>
+                    <button type="button" class="close" aria-label="Close" onclick="$('#yc').hide()">
                         <span aria-hidden="true">×</span></button>
                     <ul class="margin-bottom-none padding-left-lg" id="li1">
                     </ul>
@@ -40,7 +40,6 @@
                             <button style="margin-left: 10px;" type="button" id="getCodeButton" onclick="getVerificationCode(this)">
                                 获取验证码
                             </button>
-                            {{--                            <a href="#" onclick="updateImg()" style="margin-left: 10px;"> <img src="{{url('captcha/1')}}" id="captchaImg" /></a>--}}
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,6 +55,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section("scriptsAfterJs")
     <script>
         var timeCount = 60;
 

@@ -28,7 +28,6 @@
                                 class="iconfont icon-edit"
                                 style="font-size: 1.4rem;line-height: 1.4rem; margin-left: 20px" title="修改用户名"></i></a>
                     </div>
-
                 </div>
                 <div class="row m-3">
                     <div class="col-md-2 text-md-right">手机号</div>
@@ -36,6 +35,7 @@
                 </div>
             </div>
             <div class="tab-pane" id="company">
+                @if($user->company)
                 <div class="row m-3">
                     <div class="col-md-2  text-md-right">企业名称</div>
                     <div class="col-md-8">{{$user->company->compName}}</div>
@@ -59,6 +59,11 @@
                 <div class="m-3 col-md-10" style="text-align: center">
                     <a href="{{ route('company.edit', ['user' => $user->id]) }}" class="btn btn-primary">修改</a>
                 </div>
+                @else
+                    <div class="m-3 col-md-10" style="text-align: center">
+                        <a href="{{ route('company.create')}}" class="btn btn-primary">新增</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

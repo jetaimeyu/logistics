@@ -13,7 +13,7 @@ class AuthorizationsRequest extends FormRequest
      */
 //    public function authorize()
 //    {
-//        return false;
+//        return true;
 //    }
 
     /**
@@ -25,8 +25,17 @@ class AuthorizationsRequest extends FormRequest
     {
         return [
             //
-            'username' =>'required|string',
-            'password'=>'required|alpha_dash|min:6'
+            'username' =>'required',
+            'password'=>'required|min:6'
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.required'=>'用户名不能为空',
+            'password.required'=>'密码不能为空'
+        ];
+        
     }
 }

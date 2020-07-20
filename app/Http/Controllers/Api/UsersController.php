@@ -40,10 +40,8 @@ class UsersController extends Controller
 
     public function me(Request $request)
     {
-        dd($request->user());
-        return response()->json(['11'=>111]);
-        return new UserResource($request->user());
 
+        return (new UserResource($request->user()))->showSensitiveFields();
     }
 }
 //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb76b4907504e7f24&redirect_uri=http://logistics.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect

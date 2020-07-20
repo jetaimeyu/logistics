@@ -24,4 +24,19 @@ class companyInfoRequest extends Request
             'longitude' => 'required',
         ];
     }
+
+    public function attributes()
+    {
+        return[
+            'comp_name' => '企业名称',
+            'contact' => '联系人',
+            'phone' => '手机号',
+            'tel' => '电话',
+            'address' => '地址',
+            'detail_address' => '详细地址',
+            'latitude' => '纬度',
+            'longitude' => '经度',
+        ];
+
+    }
 }

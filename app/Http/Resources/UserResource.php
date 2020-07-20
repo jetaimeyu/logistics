@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use phpDocumentor\Reflection\DocBlock\Serializer;
 
 class UserResource extends JsonResource
 {
@@ -17,12 +18,11 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         if (!$this->showSensitiveFields){
-//            $this->resource->addHidden(['phone', 'email']);
-//            $this->resource->
+            $this->resource->addHidden(['phone', 'email']);
         }
         $data = parent::toArray($request);
         $data['bound_phone'] = $this->resource->phone?true:false;
-        $data['bound_wechat'] = ($this->resource->open_id ||$this->resource->union_id) ?true:false;
+        $data['bound_wechat'] = ($this->resource->weixin_openid ||$this->resource->weixin_unionid) ?true:false;
         return  $data;
     }
 
@@ -30,6 +30,5 @@ class UserResource extends JsonResource
     {
         $this->showSensitiveFields =true;
         return $this;
-
     }
 }

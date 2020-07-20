@@ -16,6 +16,7 @@ class HomeController extends Controller
             ->title('Dashboard')
             ->description('Description...')
             ->row(Dashboard::title())
+//            ->row(view('logistic/index'))
             ->row(function (Row $row) {
 
                 $row->column(4, function (Column $column) {
