@@ -27,6 +27,11 @@ class LogisticsLine extends BaseModel
         '2' => '审核失败'
     ];
 
+    public function scopeChecked($query)
+    {
+        return $query->where('state', 1);
+    }
+
     public function getStatusAttribute()
     {
         return $this->status[$this->state];

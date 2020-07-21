@@ -19,6 +19,8 @@ Route::namespace('Home')->group(function () {
     });
     //首页
     Route::get('/', 'IndexController@index');
+    //搜索页面
+    Route::get('search', 'IndexController@search')->name('search');
     //登录页面
     //注册页面
     Route::get('signup', 'IndexController@signup');
