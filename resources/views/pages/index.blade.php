@@ -1,5 +1,7 @@
 @extends('layouts.default')
 @section('title', '首页')
+@section('keywords','关键词')
+@section('description', '描述')
 @section('content')
     <div class="row">
             <div class="search-box">

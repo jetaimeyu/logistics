@@ -60,7 +60,7 @@
         <!-- MapModal -->
         <div class="modal fade bd-example-modal-lg" id="mapModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content" style="height: 500px;width: 1000px">
+                <div class="modal-content" style="">
                     <div class="modal-header">
                         <h5 class="modal-title" id="mapModalTitle">地址选择</h5>
                         <button class="btn-sm btn-primary btn" onclick="getUserLocation()" style="margin-left: 20px">
@@ -71,7 +71,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="container" style="height: 100%; width:100%;"></div>
+                        <div id="container" style="height: 500px;"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="saveAddress()">确定</button>
@@ -84,7 +84,7 @@
 
 @endsection
 @section('scriptsAfterJs')
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
     <script>
         $(function () {
             $("#submit-button").click(function () {

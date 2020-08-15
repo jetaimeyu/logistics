@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', '物流专线查询'),
+    'keywords'=>env('APP_KEYWORDS', '默认关键词'),
+    'description'=>env('APP_DESCRIPTION', '默认描述'),
 
     /*
     |--------------------------------------------------------------------------
