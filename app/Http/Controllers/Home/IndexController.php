@@ -20,7 +20,6 @@ class IndexController extends Controller
 
     public function search(SearchRequest $request)
     {
-        $logistics = LogisticsLine::checked()->get();
         $logistics = LogisticsLine::checked()
             ->where('start_province', $request->start_province)
             ->where('start_city', $request->start_city)
