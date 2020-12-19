@@ -1,6 +1,7 @@
+<!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{config('app.name')}}- @yield('title')</title>
     <meta name="Keywords" content="{{config('app.keywords')}}-@yield('keywords')">
     <meta name="Description" content="{{config('app.description')}}-@yield('description')">
@@ -20,7 +21,7 @@
 </head>
 <body>
 @include('layouts._header')
-<div  class="container container-fluid">
+<div  class="container">
     <div id="app" class="{{ route_class() }}-page">
         @include('shared._messages')
         @yield('content')
