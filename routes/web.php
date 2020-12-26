@@ -18,7 +18,7 @@ Route::namespace('Home')->group(function () {
         return view('pages/city', ['city' => $city]);
     });
     //首页
-    //Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/', 'IndexController@index')->name('index');
     //搜索页面
     Route::get('search', 'IndexController@search')->name('search');
     //登录页面

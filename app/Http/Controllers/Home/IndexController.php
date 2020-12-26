@@ -6,19 +6,15 @@ use App\Http\Requests\SearchRequest;
 use App\Models\City;
 use App\Models\LogisticsLine;
 use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class IndexController extends Controller
 {
     //
     public function index()
     {
-
-
-//        http://line.156zs.com/
-
-//        $getInfo =get_meta_tags('http://line.156zs.com/');
-//        dd($getInfo);
         $user = User::find(4);
        return view('pages/index', ['user'=> $user]);
     }
@@ -34,6 +30,7 @@ class IndexController extends Controller
             ->where('end_city', $request->end_city)
             ->where('end_district', $request->end_district)
             ->get();
+        dd($logistics);
         return view('pages/search',['logistics'=>$logistics,'request'=>$request->start_province]);
 
     }

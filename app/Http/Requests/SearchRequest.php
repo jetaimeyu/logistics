@@ -24,4 +24,16 @@ class SearchRequest extends FormRequest
             'end_district' => 'required',
         ];
     }
+    public function attributes()
+    {
+        return [
+            'start_province' => '出发地',
+            'start_city' => '出发地',
+            'start_district' => '出发地',
+            'end_province' => '出发地',
+            'end_city' => '出发地',
+            'end_district' => '出发地',
+        ];
+    }
+
 }

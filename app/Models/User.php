@@ -35,7 +35,7 @@ class User extends Authenticatable implements JWTSubject
 
     //追加包含在模型的数组与json中
     protected $appends = [
-        'format_name'
+        'format_name','created_time'
     ];
     /**
      * The attributes that should be cast to native types.

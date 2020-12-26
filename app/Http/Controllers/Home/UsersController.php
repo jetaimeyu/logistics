@@ -117,10 +117,10 @@ class UsersController extends Controller
     {
         $phraseBuilder = new PhraseBuilder(4, '0123456789');
         $builder = new CaptchaBuilder(4, $phraseBuilder);
+        $builder->setBackgroundColor(20,133,220);
         $builder->build();
         //获取验证码内容
-        $phrase = $builder->getPhrase();
-        \session(['signImg' => $phrase]);
+        \session(['signImg' => $builder->getPhrase()]);
         header("Cache-Control: no-cache, must-revalidate");
         header('Content-Type: image/jpeg');
         $builder->save('out.jpg');

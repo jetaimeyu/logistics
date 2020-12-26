@@ -12,6 +12,7 @@ class IndexController extends Controller
     //
     public function index(Client $client)
     {
+        dd(1);
         $response = $client->request('GET', 'http://api50.maidiyun.com/api/v1/Comp/GetCompInfo?compId=26858');
         echo $response->getStatusCode(); // 200
 //        echo PHP_EOL;
