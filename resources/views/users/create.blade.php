@@ -2,7 +2,7 @@
 @section('title','注册')
 @section('content')
     <div class="offset-md-2 col-md-8">
-        <div class="card">
+        <div class="card mt-5">
             <div class="card-header">
                 <h5>注册</h5>
             </div>
@@ -37,7 +37,7 @@
                         <label for="verificationCode">手机验证码</label>
                         <div class="input-group mb-3">
                             <input type="text" style="height: 40px;" class="form-control" id="verificationCode" name="verificationCode" value="{{old('verificationCode')}}">
-                            <button style="margin-left: 10px;" type="button" id="getCodeButton" onclick="getVerificationCode(this)">
+                            <button style="margin-left: 10px;" type="button" class="btn-primary" id="getCodeButton" onclick="getVerificationCode(this)">
                                 获取验证码
                             </button>
                         </div>

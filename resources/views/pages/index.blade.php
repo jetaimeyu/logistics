@@ -32,7 +32,7 @@
             {{--<img src="/images/www.jpg" class="m-3" style="height: 50px;" alt="">--}}
         {{--</div>--}}
     {{--</div>--}}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-3">
 
         <form action="{{route('search')}}" method="get" class="form-row align-items-center">
             @csrf

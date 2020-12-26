@@ -2,7 +2,7 @@
 @section('title', '重置密码')
 @section('content')
     <div class="offset-md-2 col-md-8">
-        <div class="card">
+        <div class="card mt-5">
             <div class="card-header">
                 <h5>重置密码</h5>
             </div>

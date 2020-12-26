@@ -4,7 +4,7 @@
             <span aria-hidden="true">×</span></button>
         <ul>
             @foreach($errors->all() as $error)
-                <dl>{{$error}}</dl>
+                <li>{{$error}}</li>
             @endforeach
         </ul>
     </div>
