@@ -18,13 +18,6 @@
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        {{--@error('phone')--}}
-                        {{--<div class="alert alert-danger">{{ $message }}</div>--}}
-                        {{--@enderror--}}
-                        {{--@if ($errors->has('phone'))--}}
-                            {{--<div class="invalid-feedback text-danger"--}}
-                                 {{--style="display: block !important;">{{ $errors->first('phone') }}</div>--}}
-                        {{--@endif--}}
                     </div>
                     <div class="form-group">
                         <label for="password">密码 （<a href="{{ route('password.reset') }}">忘记密码</a>）：</label>

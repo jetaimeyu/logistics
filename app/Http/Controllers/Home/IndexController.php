@@ -30,7 +30,6 @@ class IndexController extends Controller
             ->where('end_city', $request->end_city)
             ->where('end_district', $request->end_district)
             ->get();
-        dd($logistics);
         return view('pages/search',['logistics'=>$logistics,'request'=>$request->start_province]);
 
     }

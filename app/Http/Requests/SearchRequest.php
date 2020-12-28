@@ -27,12 +27,12 @@ class SearchRequest extends FormRequest
     public function attributes()
     {
         return [
-            'start_province' => '出发地',
-            'start_city' => '出发地',
-            'start_district' => '出发地',
-            'end_province' => '出发地',
-            'end_city' => '出发地',
-            'end_district' => '出发地',
+            'start_province' => '始发地省',
+            'start_city' => '始发地市',
+            'start_district' => '始发地区',
+            'end_province' => '目的地省',
+            'end_city' => '目的地市',
+            'end_district' => '目的地区',
         ];
     }
 
