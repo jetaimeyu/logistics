@@ -3,7 +3,7 @@
     <ul>
         @foreach($city as $item)
             <li>{{$item->code . '-'. $item->name}}</li>
-            @endforeach
+        @endforeach
     </ul>
     {{$city->onEachSide(2)->links()}}
 @endsection

@@ -48,3 +48,4 @@ Route::prefix('v1')
 
     });
 Route::get('login', 'Api\AuthorizationsController@store')->name('login');
+Route::get('rand', 'Api\RandController@index')->name('rand');
