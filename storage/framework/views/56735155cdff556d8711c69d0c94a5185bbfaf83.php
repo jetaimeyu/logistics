@@ -1,49 +1,48 @@
-@extends('layouts.default')
-@section('title', ($company->id?'企业信息编辑':'新增企业信息') )
-@section('content')
+<?php $__env->startSection('title', ($company->id?'企业信息编辑':'新增企业信息') ); ?>
+<?php $__env->startSection('content'); ?>
     <div class="card">
         <div class="card-header">
-            <h5>{{$company->id?'企业信息编辑':'新增企业信息'}} </h5>
+            <h5><?php echo e($company->id?'企业信息编辑':'新增企业信息', false); ?> </h5>
         </div>
-        @include('shared._errors')
+        <?php echo $__env->make('shared._errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="card-body">
-            @if($company->id)
-                <form class="" action="{{route('company.update', ['companyInfo'=>$company->id])}}" method="post" id="company-create">
-                    @method('put')
-                    @else
-                        <form class="" action="{{route('company.store')}}" method="post" id="company-create">
-                            @endif
-                            @csrf
+            <?php if($company->id): ?>
+                <form class="" action="<?php echo e(route('company.update', ['companyInfo'=>$company->id]), false); ?>" method="post" id="company-create">
+                    <?php echo method_field('put'); ?>
+                    <?php else: ?>
+                        <form class="" action="<?php echo e(route('company.store'), false); ?>" method="post" id="company-create">
+                            <?php endif; ?>
+                            <?php echo csrf_field(); ?>
                             <div class="form-group row">
                                 <label for="compName" class="col-sm-2 col-form-label">名称</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="compName" name="comp_name" value="{{ old('comp_name', $company->compName) }}">
+                                    <input type="text" class="form-control" id="compName" name="comp_name" value="<?php echo e(old('comp_name', $company->compName), false); ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="contact" class="col-sm-2 col-form-label">联系人</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="contact" name="contact" value="{{ old('contact', $company->contact) }}">
+                                    <input type="text" class="form-control" id="contact" name="contact" value="<?php echo e(old('contact', $company->contact), false); ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="tel" class="col-sm-2 col-form-label">座机</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="tel" name="tel" value="{{ old('tel', $company->tel)}}">
+                                    <input type="text" class="form-control" id="tel" name="tel" value="<?php echo e(old('tel', $company->tel), false); ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-2 col-form-label">手机</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $company->phone)}}">
+                                    <input type="text" class="form-control" id="phone" name="phone" value="<?php echo e(old('phone', $company->phone), false); ?>">
                                 </div>
                             </div>
                             <div class="form-group row" data-toggle="modal" data-target="#mapModal">
                                 <label for="address" class="col-sm-2 col-form-label">地址</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address',$company->address)}}">
-                                    <input type="text" hidden id="longitude" name="longitude" value="{{ old('longitude', $company->longitude)}}">
-                                    <input type="text" hidden id="latitude" name="latitude" value="{{ old('latitude', $company->latitude)}}">
+                                    <input type="text" class="form-control" id="address" name="address" value="<?php echo e(old('address',$company->address), false); ?>">
+                                    <input type="text" hidden id="longitude" name="longitude" value="<?php echo e(old('longitude', $company->longitude), false); ?>">
+                                    <input type="text" hidden id="latitude" name="latitude" value="<?php echo e(old('latitude', $company->latitude), false); ?>">
                                     <div style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;">
                                         <i class="fa fa-map-marker fa-lg"></i></div>
                                 </div>
@@ -51,7 +50,7 @@
                             <div class="form-group row">
                                 <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="detail_address" name="detail_address" value="{{ old('detail_address', $company->detailAddress)}}">
+                                    <input type="text" class="form-control" id="detail_address" name="detail_address" value="<?php echo e(old('detail_address', $company->detailAddress), false); ?>">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
@@ -82,8 +81,8 @@
     </div>
 
 
-@endsection
-@section('scriptsAfterJs')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scriptsAfterJs'); ?>
     <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
     <script>
         $(function () {
@@ -170,4 +169,6 @@
             $('#mapModal').modal()
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\www\logistics\resources\views/company/create.blade.php ENDPATH**/ ?>

@@ -49,4 +49,11 @@ class IndexController extends Controller
 //        return view('pages/search',['logistics'=>$logistics,'request'=>$request->start_province]);
         return view('pages/search', ['end_city' => $logistic->first()->end_city, 'logistic' => $logistic->toArray()]);
     }
+
+
+    public function xx()
+    {
+
+        return view('pages.xx');
+    }
 }

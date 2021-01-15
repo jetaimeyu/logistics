@@ -7,7 +7,7 @@
                                  :init-value="{{json_encode([old('start_province'),old('start_city'),old('start_district')])}}">
                     <div class="form-row">
                         <label class="col-form-label col-sm-2 text-md-right"
-                               style="padding-right: 20px">初始地</label>
+                               style="padding-right: 20px">始发地</label>
                         <div class="col-sm-3 input-group-sm">
                             <select class="form-control   @error('start_province') is-invalid @enderror" v-model="provinceId" required>
                                 <option value="">选择省</option>

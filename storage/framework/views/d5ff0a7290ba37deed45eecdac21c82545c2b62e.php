@@ -1,8 +1,7 @@
-@extends('layouts.default')
-@section('title', '首页')
-@section('keywords','关键词')
-@section('description', '描述')
-@section('content')
+<?php $__env->startSection('title', '首页'); ?>
+<?php $__env->startSection('keywords','关键词'); ?>
+<?php $__env->startSection('description', '描述'); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div id="carouselExampleControls" class="carousel slide rol m-3" data-ride="carousel" style="width: 100%">
             <div class="carousel-inner">
@@ -28,10 +27,10 @@
         </div>
     </div>
     <div class="row justify-content-center p-3">
-        @include('logistic.logisticSearch')
+        <?php echo $__env->make('logistic.logisticSearch', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
-@endsection
-@section('scriptsAfterJs')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scriptsAfterJs'); ?>
     <script>
         // $(function (){
         var
@@ -41,4 +40,6 @@
         // })
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\www\logistics\resources\views/pages/index.blade.php ENDPATH**/ ?>

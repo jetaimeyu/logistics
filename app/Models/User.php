@@ -12,6 +12,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    public function __invoke()
+    {
+        // TODO: Implement __invoke() method.
+        var_dump('ddd');
+    }
+
     use Notifiable ;
 
     /**

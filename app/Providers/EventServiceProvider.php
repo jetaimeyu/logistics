@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\OrderShipped;
+use App\Listeners\GetMessage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -16,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        OrderShipped::class=>[
+            GetMessage::class
+        ],
         SocialiteWasCalled::class=>[
             // add your listeners (aka providers) here
             'SocialiteProviders\Weixin\WeixinExtendSocialite@handle'
