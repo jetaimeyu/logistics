@@ -30,6 +30,7 @@ class IndexController extends Controller
 
     public function search(SearchRequest $request)
     {
+        dd($request->all());
         dd('嘿嘿嘿');
 //        $logistics = LogisticsLine::checked()
 //            ->where('start_province', $request->start_province)
