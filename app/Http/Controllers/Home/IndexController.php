@@ -30,31 +30,21 @@ class IndexController extends Controller
 
     public function search(SearchRequest $request)
     {
-        dd($request->all());
-        dd('嘿嘿嘿');
-//        $logistics = LogisticsLine::checked()
-//            ->where('start_province', $request->start_province)
-//            ->where('start_city', $request->start_city)
-//            ->where('start_district', $request->start_district)
-//            ->where('end_province', $request->end_province)
-//            ->where('end_city', $request->end_city)
-//            ->where('end_district', $request->end_district)
-//            ->select('user_id')
-//            ->get();
-        $logistic = LogisticsLine::checked()->select('user_id')->addSelect('end_city')->take(1)->get();
-//        echo  $logistics->count();
-//        var_dump($logistics->toArray());
-//        var_dump($logistic->first()->end_city);
-//        dd($logistic);
-//        dd($logistic->toArray());
-//        return view('pages/search',['logistics'=>$logistics,'request'=>$request->start_province]);
-        return view('pages/search', ['end_city' => $logistic->first()->end_city, 'logistic' => $logistic->toArray()]);
+        $logistics = LogisticsLine::checked()
+            ->where(function ($query) use ($request) {
+            $query->where('start_province', $request->start_province);
+            $query->where('end_province', $request->end_province);
+            if ($request->start_city) $query->where('start_city', $request->start_city);
+            if ($request->start_district) $query->where('start_district', $request->start_district);
+            if ($request->end_city) $query->where('end_city', $request->end_city);
+            if ($request->end_district) $query->where('end_district', $request->end_district);
+        })
+            ->with('user.company')->paginate(3);
+        return view('pages/search', ['logistics' => $logistics]);
     }
-
 
     public function xx()
     {
-
         return view('pages.xx');
     }
 }

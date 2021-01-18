@@ -6,7 +6,7 @@
     <meta name="Keywords" content="{{config('app.keywords')}}-@yield('keywords')">
     <meta name="Description" content="{{config('app.description')}}-@yield('description')">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1775039_l3jn6n5kl7l.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_2176528_ve9qnr87uro.css">
     <style>
         .BMap_cpyCtrl {
             display: none;

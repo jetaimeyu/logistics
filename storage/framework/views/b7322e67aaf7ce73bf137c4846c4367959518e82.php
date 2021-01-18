@@ -6,7 +6,7 @@
     <meta name="Keywords" content="<?php echo e(config('app.keywords'), false); ?>-<?php echo $__env->yieldContent('keywords'); ?>">
     <meta name="Description" content="<?php echo e(config('app.description'), false); ?>-<?php echo $__env->yieldContent('description'); ?>">
     <link rel="stylesheet" href="<?php echo e(mix('css/app.css'), false); ?>">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1775039_l3jn6n5kl7l.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_2176528_ve9qnr87uro.css">
     <style>
         .BMap_cpyCtrl {
             display: none;

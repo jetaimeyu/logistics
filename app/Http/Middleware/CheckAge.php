@@ -21,7 +21,7 @@ class CheckAge
     public function handle($request, Closure $next)
     {
         event(new OrderShipped("嘿嘿嘿".time()));
-        dd(\cache()->store('redis')->get('message'));
+//        dd(\cache()->store('redis')->get('message'));
         return $next($request);
     }
 

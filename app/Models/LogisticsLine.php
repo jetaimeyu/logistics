@@ -38,6 +38,17 @@ class LogisticsLine extends BaseModel
 
     }
 
+    public function getStartAddressAttribute()
+    {
+        return $this->start_province.$this->start_city.$this->start_district;
+    }
+
+    public function getEndAddressAttribute()
+    {
+        return $this->end_province.$this->end_city.$this->end_district;
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

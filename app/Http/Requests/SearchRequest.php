@@ -16,23 +16,15 @@ class SearchRequest extends FormRequest
     {
         return [
             //
-            'start_province' => 'required',
-            'start_city' => 'required',
-            'start_district' => 'required',
-            'end_province' => 'required',
-            'end_city' => 'required',
-            'end_district' => 'required',
+            'start'=>'required',
+            'end'=>'required',
         ];
     }
     public function attributes()
     {
         return [
-            'start_province' => '始发地省',
-            'start_city' => '始发地市',
-            'start_district' => '始发地区',
-            'end_province' => '目的地省',
-            'end_city' => '目的地市',
-            'end_district' => '目的地区',
+            'start' => '始发地',
+            'end' => '目的地',
         ];
     }
 

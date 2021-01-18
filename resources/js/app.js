@@ -23,7 +23,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('select-district', require('./components/SelectDistrict.vue').default);
 Vue.component('address-create-and-edit', require('./components/AddressCreateAndEdit.vue').default);
-Vue.component('test',require('./components/test').default)
+Vue.component('test',require('./components/test').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

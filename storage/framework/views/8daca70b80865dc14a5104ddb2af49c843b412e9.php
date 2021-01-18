@@ -1,23 +1,23 @@
+<?php $__env->startSection('title','搜索'); ?>
 <?php $__env->startSection('content'); ?>
     <div>
-        <test></test>
+        <?php echo $__env->make('shared._errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <form action="<?php echo e(route('search'), false); ?>" method="get">
             <?php echo csrf_field(); ?>
-            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" @click="kkk">
+            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=1">
                 <label for="">第一个地址</label>
-                <input autocomplete="off" type="text" id="start" name="first">
-                <input hidden type="text" name="start_province">
-                <input hidden type="text" name="start_city">
-                <input hidden type="text" name="start_district">
+                <input autocomplete="off" type="text" id="start" name="start"  value="<?php echo e(old('start'), false); ?>">
+                <input hidden type="text" id="start_province" name="start_province" value="<?php echo e(old('start_province'), false); ?>">
+                <input hidden type="text" id="start_city" name="start_city" value="<?php echo e(old('start_city'), false); ?>">
+                <input hidden type="text" id="start_district" name="start_district" value="<?php echo e(old('start_district'), false); ?>">
             </div>
-            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal">
+            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=2">
                 <label for="">第二个地址</label>
-                <input autocomplete="off" type="text" id="end" name="second">
-                <input hidden type="text" name="end_province">
-                <input hidden type="text" name="end_city">
-                <input hidden type="text" name="end_district">
+                <input autocomplete="off" type="text" id="end"  name="end"  value="<?php echo e(old('end'), false); ?>">
+                <input hidden type="text" id="end_province" name="end_province"  value="<?php echo e(old('end_province'), false); ?>">
+                <input hidden type="text" id="end_city" name="end_city" value="<?php echo e(old('end_city'), false); ?>">
+                <input hidden type="text" id="end_district" name="end_district" value="<?php echo e(old('end_district'), false); ?>">
             </div>
-
             <button type="submit" class="btn-primary btn  btn-sm">搜索</button>
         </form>
     </div>
@@ -69,16 +69,28 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scriptsAfterJs'); ?>
     <script>
+        var addressOrder = 1;
         var setAddress = () => {
             const province = $("#provinceName").val();
             const city = $("#cityName").val();
             const district = $("#districtName").val();
+            switch (addressOrder) {
+                case 1:
+                    $('#start').val(province + city + district);
+                    $('#start_province').val(province);
+                    $('#start_city').val(city);
+                    $('#start_district').val(district);
+                    break;
+                case 2:
+                    $('#end').val(province + city + district);
+                    $('#end_province').val(province);
+                    $('#end_city').val(city);
+                    $('#end_district').val(district);
+                    break;
+
+            }
             console.log(province, city, district);
-            $('#start').val(province + city + district)
             $('#addressSelectModal').modal('hide');
-        }
-        var kkk = ()=>{
-            console.log(23)
         }
     </script>
 <?php $__env->stopSection(); ?>

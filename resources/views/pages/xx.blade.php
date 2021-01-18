@@ -1,24 +1,24 @@
 @extends('layouts.default')
+@section('title','搜索')
 @section('content')
     <div>
-        <test></test>
+        @include('shared._errors')
         <form action="{{route('search')}}" method="get">
             @csrf
-            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" @click="kkk">
+            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=1">
                 <label for="">第一个地址</label>
-                <input autocomplete="off" type="text" id="start" name="first">
-                <input hidden type="text" name="start_province">
-                <input hidden type="text" name="start_city">
-                <input hidden type="text" name="start_district">
+                <input autocomplete="off" type="text" id="start" name="start"  value="{{old('start')}}">
+                <input hidden type="text" id="start_province" name="start_province" value="{{old('start_province')}}">
+                <input hidden type="text" id="start_city" name="start_city" value="{{old('start_city')}}">
+                <input hidden type="text" id="start_district" name="start_district" value="{{old('start_district')}}">
             </div>
-            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal">
+            <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=2">
                 <label for="">第二个地址</label>
-                <input autocomplete="off" type="text" id="end" name="second">
-                <input hidden type="text" name="end_province">
-                <input hidden type="text" name="end_city">
-                <input hidden type="text" name="end_district">
+                <input autocomplete="off" type="text" id="end"  name="end"  value="{{old('end')}}">
+                <input hidden type="text" id="end_province" name="end_province"  value="{{old('end_province')}}">
+                <input hidden type="text" id="end_city" name="end_city" value="{{old('end_city')}}">
+                <input hidden type="text" id="end_district" name="end_district" value="{{old('end_district')}}">
             </div>
-
             <button type="submit" class="btn-primary btn  btn-sm">搜索</button>
         </form>
     </div>
@@ -70,16 +70,28 @@
 @endsection
 @section('scriptsAfterJs')
     <script>
+        var addressOrder = 1;
         var setAddress = () => {
             const province = $("#provinceName").val();
             const city = $("#cityName").val();
             const district = $("#districtName").val();
+            switch (addressOrder) {
+                case 1:
+                    $('#start').val(province + city + district);
+                    $('#start_province').val(province);
+                    $('#start_city').val(city);
+                    $('#start_district').val(district);
+                    break;
+                case 2:
+                    $('#end').val(province + city + district);
+                    $('#end_province').val(province);
+                    $('#end_city').val(city);
+                    $('#end_district').val(district);
+                    break;
+
+            }
             console.log(province, city, district);
-            $('#start').val(province + city + district)
             $('#addressSelectModal').modal('hide');
-        }
-        var kkk = ()=>{
-            console.log(23)
         }
     </script>
 @endsection
