@@ -20,11 +20,14 @@ Route::namespace('Test')->middleware('checkAge')->prefix('te')->group(function (
     Route::get('ds', 'IndexController@index')->name('test.ds');
 });
 Route::namespace('Home')->group(function () {
+//    Route::get('upload',function (){
+//        return view('pages.upload');
+//    })->name('upload');
+//    Route::post('upload', 'IndexController@upload')->name('upload');
     Route::get('city', function () {
         $city = \Illuminate\Support\Facades\DB::table('cities')->paginate();
         return view('pages/city', ['city' => $city]);
     });
-    //首页
     Route::get('/', 'IndexController@xx')->name('index');
     //首页
 //    Route::get('/', 'IndexController@index')->name('index');

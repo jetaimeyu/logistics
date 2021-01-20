@@ -8,57 +8,67 @@
         @include('shared._errors')
         <div class="card-body">
             @if($company->id)
-                <form class="" action="{{route('company.update', ['companyInfo'=>$company->id])}}" method="post" id="company-create">
-                    @method('put')
-                    @else
-                        <form class="" action="{{route('company.store')}}" method="post" id="company-create">
-                            @endif
-                            @csrf
-                            <div class="form-group row">
-                                <label for="compName" class="col-sm-2 col-form-label">名称</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="compName" name="comp_name" value="{{ old('comp_name', $company->compName) }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="contact" class="col-sm-2 col-form-label">联系人</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="contact" name="contact" value="{{ old('contact', $company->contact) }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="tel" class="col-sm-2 col-form-label">座机</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="tel" name="tel" value="{{ old('tel', $company->tel)}}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="phone" class="col-sm-2 col-form-label">手机</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $company->phone)}}">
-                                </div>
-                            </div>
-                            <div class="form-group row" data-toggle="modal" data-target="#mapModal">
-                                <label for="address" class="col-sm-2 col-form-label">地址</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address',$company->address)}}">
-                                    <input type="text" hidden id="longitude" name="longitude" value="{{ old('longitude', $company->longitude)}}">
-                                    <input type="text" hidden id="latitude" name="latitude" value="{{ old('latitude', $company->latitude)}}">
-                                    <div style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;">
-                                        <i class="fa fa-map-marker fa-lg"></i></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="detail_address" name="detail_address" value="{{ old('detail_address', $company->detailAddress)}}">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
-                        </form>
+            <form class="" action="{{route('company.update', ['companyInfo'=>$company->id])}}" method="post" id="company-create">
+                @method('put')
+            @else
+            <form class="" action="{{route('company.store')}}" method="post" id="company-create">
+            @endif
+                @csrf
+                <div class="form-group row">
+                    <label for="compName" class="col-sm-2 col-form-label">名称</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="compName" name="comp_name"
+                               value="{{ old('comp_name', $company->compName) }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contact" class="col-sm-2 col-form-label">联系人</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="contact" name="contact"
+                               value="{{ old('contact', $company->contact) }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tel" class="col-sm-2 col-form-label">座机</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="tel" name="tel"
+                               value="{{ old('tel', $company->tel)}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-sm-2 col-form-label">手机</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="phone" name="phone"
+                               value="{{ old('phone', $company->phone)}}">
+                    </div>
+                </div>
+                <div class="form-group row" data-toggle="modal" data-target="#mapModal">
+                    <label for="address" class="col-sm-2 col-form-label">地址</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="address" name="address"
+                               value="{{ old('address',$company->address)}}">
+                        <input type="text" hidden id="longitude" name="longitude"
+                               value="{{ old('longitude', $company->longitude)}}">
+                        <input type="text" hidden id="latitude" name="latitude"
+                               value="{{ old('latitude', $company->latitude)}}">
+                        <div
+                            style="position: absolute;top: 50%;right: 30px;transform: translate(0,-50%);cursor: pointer;">
+                            <i class="fa fa-map-marker fa-lg"></i></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="addressDetail" class="col-sm-2 col-form-label">详细地址</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="detail_address" name="detail_address"
+                               value="{{ old('detail_address', $company->detailAddress)}}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit-button">提交</button>
+            </form>
         </div>
         <!-- MapModal -->
-        <div class="modal fade bd-example-modal-lg" id="mapModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="mapModal" data-backdrop="static" tabindex="-1" role="dialog"
+             aria-labelledby="mapModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content" style="">
                     <div class="modal-header">
@@ -84,7 +94,8 @@
 
 @endsection
 @section('scriptsAfterJs')
-    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=3.0&ak=uUUBI8RNG8GrpQ1SzI3sEkGdrLZOUKN5"></script>
     <script>
         $(function () {
             $("#submit-button").click(function () {

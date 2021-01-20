@@ -1,4 +1,7 @@
 <?php $__env->startSection('content'); ?>
+    <div class="row">
+        <?php echo $__env->make('shared._search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    </div>
     <div class="row"><?php echo e($logistics->count().'/'.$logistics->total(), false); ?>
 
 

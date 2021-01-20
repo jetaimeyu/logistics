@@ -3,7 +3,7 @@
 @section('content')
     <div>
         @include('shared._errors')
-        <form action="{{route('search')}}" method="get">
+        <form action="{{route('search')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=1">
                 <label for="">第一个地址</label>
@@ -18,6 +18,10 @@
                 <input hidden type="text" id="end_province" name="end_province"  value="{{old('end_province')}}">
                 <input hidden type="text" id="end_city" name="end_city" value="{{old('end_city')}}">
                 <input hidden type="text" id="end_district" name="end_district" value="{{old('end_district')}}">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" name="tt" class="form-control-file" id="exampleFormControlFile1" value="{{old('tt')}}">
             </div>
             <button type="submit" class="btn-primary btn  btn-sm">搜索</button>
         </form>

@@ -180,6 +180,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //验证码发送
         App\Providers\EasySmsServiceProvider::class,
+        //阿里云oss
+        Jacobcyl\AliOSS\AliOssServiceProvider::class
 
     ],
 

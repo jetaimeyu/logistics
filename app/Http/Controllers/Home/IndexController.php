@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\City;
 use App\Models\LogisticsLine;
@@ -12,6 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class IndexController extends Controller
@@ -24,7 +26,7 @@ class IndexController extends Controller
 //        $d = DB::table('soul')->select('title')->skip($skip)->take(1)->first();
 //        dd($d->title);
         $user = User::find(4);
-       return view('pages/index', ['user'=> $user]);
+       return view('pages/index', ['user'=> $user, 'filters'=>'']);
     }
 
 
@@ -40,11 +42,21 @@ class IndexController extends Controller
             if ($request->end_district) $query->where('end_district', $request->end_district);
         })
             ->with('user.company')->paginate(3);
-        return view('pages/search', ['logistics' => $logistics]);
+        return view('pages/search', ['logistics' => $logistics, 'filters'=>$request]);
     }
 
     public function xx()
     {
         return view('pages.xx');
+    }
+
+    public function upload(ImageUploadRequest $request)
+    {
+        if ($request->file('file')->isValid()){
+            $path = 'timage/'.date('Ymd',time());
+            $url = upload_image($path, $request->file('file'), 'public');
+            return response()->json(['status'=>1, 'data'=>$url]);
+        }
+
     }
 }

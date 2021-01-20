@@ -1,5 +1,8 @@
 @extends('layouts.default')
 @section('content')
+    <div class="row">
+        @include('shared._search')
+    </div>
     <div class="row">{{$logistics->count().'/'.$logistics->total()}}
 {{--        {{$logistics->first()->startAddress}}--}}
 {{--        <p> {{json_encode($logistics->first(),JSON_UNESCAPED_UNICODE )}}</p>--}}

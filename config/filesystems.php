@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'oss'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,12 +46,13 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'url' => env('APP_URL')
         ],
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -63,12 +64,23 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
-        'admin'=>[
-            'driver'=>'local',
-            'root'       => storage_path('app/public/upload'),
+        'admin' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/upload'),
             'visibility' => 'public',
-            'url' => env('APP_URL').'/storage/upload',
-        ]
+            'url' => env('APP_URL') . '/storage/upload',
+        ],
+        'oss' => [
+            'driver' => 'oss',
+            'access_id' => env('ALIYUN_ACCESS_ID'),
+            'access_key' => env('ALIYUN_ACCESS_KEY'),
+            'bucket' => env('ALIYUN_BUCKET'),
+            'endpoint' => env('ALIYUN_ENDPOINT'),
+            'cdnDomain' => env('ALIYUN_CDN_DOMAIN'),
+            'ssl' => env('ALIYUN_SSL'),
+            'isCName' => env('ALIYUN_IS_CNAME'),
+            'debug' => env('ALIYUN_DEBUG')
+        ],
 
     ],
 

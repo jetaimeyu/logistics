@@ -28,14 +28,14 @@
         </div>
     </div>
     <div class="row justify-content-center p-3">
-        @include('logistic.logisticSearch')
+        @include('shared._search')
+{{--        @include('logistic.logisticSearch')--}}
     </div>
 @endsection
 @section('scriptsAfterJs')
     <script>
         // $(function (){
-        var
-            ss = {a: 1, b: 2};
+        var ss = {a: 1, b: 2};
         let aa = _.cloneDeep(ss);
         console.log(ss === aa)
         // })

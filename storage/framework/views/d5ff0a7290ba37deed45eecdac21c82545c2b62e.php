@@ -27,7 +27,8 @@
         </div>
     </div>
     <div class="row justify-content-center p-3">
-        <?php echo $__env->make('logistic.logisticSearch', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('shared._search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
     </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scriptsAfterJs'); ?>

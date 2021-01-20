@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\OrderShipped;
+use App\Jobs\MessageJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Queue\InteractsWithQueue;
@@ -27,6 +28,7 @@ class GetMessage implements ShouldQueue
      */
     public function handle(OrderShipped $event)
     {
-        cache()->store('redis')->put('message', $event->message);
+        dispatch(new MessageJob("heieheieh", 20));
+//        cache()->store('redis')->put('message', $event->message);
     }
 }

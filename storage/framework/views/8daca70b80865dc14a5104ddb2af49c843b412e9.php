@@ -2,7 +2,7 @@
 <?php $__env->startSection('content'); ?>
     <div>
         <?php echo $__env->make('shared._errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <form action="<?php echo e(route('search'), false); ?>" method="get">
+        <form action="<?php echo e(route('search'), false); ?>" method="post" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <div class="mb-2" data-toggle="modal" data-target="#addressSelectModal" onclick="window.addressOrder=1">
                 <label for="">第一个地址</label>
@@ -17,6 +17,10 @@
                 <input hidden type="text" id="end_province" name="end_province"  value="<?php echo e(old('end_province'), false); ?>">
                 <input hidden type="text" id="end_city" name="end_city" value="<?php echo e(old('end_city'), false); ?>">
                 <input hidden type="text" id="end_district" name="end_district" value="<?php echo e(old('end_district'), false); ?>">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" name="tt" class="form-control-file" id="exampleFormControlFile1" value="<?php echo e(old('tt'), false); ?>">
             </div>
             <button type="submit" class="btn-primary btn  btn-sm">搜索</button>
         </form>
