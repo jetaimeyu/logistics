@@ -13,24 +13,9 @@ use Illuminate\Support\Facades\Redis;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('Test')->middleware('checkAge')->prefix('te')->group(function (){
-    Route::get('publish', function (){
-        Redis::publish('test_channel', json_encode(['dd'=>'dasd']));
-    });
-    Route::get('ds', 'IndexController@index')->name('test.ds');
-});
 Route::namespace('Home')->group(function () {
-//    Route::get('upload',function (){
-//        return view('pages.upload');
-//    })->name('upload');
-//    Route::post('upload', 'IndexController@upload')->name('upload');
-    Route::get('city', function () {
-        $city = \Illuminate\Support\Facades\DB::table('cities')->paginate();
-        return view('pages/city', ['city' => $city]);
-    });
-    Route::get('/', 'IndexController@xx')->name('index');
     //首页
-//    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/', 'IndexController@index')->name('index');
     //搜索页面
     Route::get('search', 'IndexController@search')->name('search');
     //登录页面

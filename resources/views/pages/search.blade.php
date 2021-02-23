@@ -1,4 +1,4 @@
-@extends('layouts.default')
+ @extends('layouts.default')
 @section('content')
     <div class="row">
         @include('shared._search')

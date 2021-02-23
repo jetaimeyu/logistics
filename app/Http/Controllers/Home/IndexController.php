@@ -21,6 +21,18 @@ class IndexController extends Controller
     //
     public function index()
     {
+        for($i=1;$i<10;$i++){
+            $a = uniqid(mt_rand(), true);
+            dump(\md5($a));
+        }
+        dd(11);
+
+        $user = 1;
+        $post=2;
+        $a = compact('user','post');
+        $a = [1,2,3,5];
+        $d=  array_splice($a,2,2, [2,3333333]);
+        dd($d, $a);
 //        $count=DB::table('soul')->count()-1;
 //        $skip = mt_rand(0, $count);
 //        $d = DB::table('soul')->select('title')->skip($skip)->take(1)->first();

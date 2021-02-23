@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 use Ramsey\Collection\Collection;
@@ -28,12 +29,6 @@ class CheckAge
         dump(str_replace('a', 'b', "AAaa"));
         dd(str_ireplace('a','b','AAaa'));
         dd(str_replace('.','-',['sdads.dsds','dasdsad.aaaa']));
-////        \cache()->store('redis')->put('dds', LogisticsLine::find(1)->get());
-////        dd( \cache()->store('redis')->get('dds'));
-////        event(new OrderShipped("嘿嘿嘿".time()));
-//        $a =Carbon::now();
-//        dispatch(new MessageJob("heiehei2eh".$a, 1));
-//        dd();
         return $next($request);
     }
 
