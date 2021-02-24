@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redis;
 */
 Route::namespace('Home')->group(function () {
     //首页
+
     Route::get('/', 'IndexController@index')->name('index');
     //搜索页面
     Route::get('search', 'IndexController@search')->name('search');
