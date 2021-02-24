@@ -34,8 +34,7 @@
 <?php $__env->startSection('scriptsAfterJs'); ?>
     <script>
         // $(function (){
-        var
-            ss = {a: 1, b: 2};
+        var ss = {a: 1, b: 2};
         let aa = _.cloneDeep(ss);
         console.log(ss === aa)
         // })
