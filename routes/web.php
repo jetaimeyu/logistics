@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +47,4 @@ Route::namespace('Home')->group(function () {
         Route::put('logistic/update/{logistics_line}', 'LogisticController@update')->name('logistic.update');
         Route::get('logistics', 'LogisticController@index')->name('logistic.index');
     });
-
 });
-
-//Route::get('/', "IndexController@index");

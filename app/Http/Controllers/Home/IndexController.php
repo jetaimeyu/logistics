@@ -19,9 +19,9 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class IndexController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-       return view('pages/index');
+       return view('pages/ss');
     }
     public function search(SearchRequest $request)
     {
