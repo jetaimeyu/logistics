@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./formValidation');
 
 window.Vue = require('vue');
 

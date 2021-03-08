@@ -20,7 +20,7 @@
                         <div class="col-md-6 p-0">
                             出发地联系人：<?php echo e($logisticsLine->startContact, false); ?> <?php echo e($logisticsLine->startPhone, false); ?></div>
                         <div class="col-md-6 p-0">
-                            目的地联系人：<?php echo e($logisticsLine->endContact, false); ?><?php echo e($logisticsLine->endPhone, false); ?></div>
+                            目的地联系人：<?php echo e($logisticsLine->endContact, false); ?> <?php echo e($logisticsLine->endPhone, false); ?></div>
                     </div>
                     <div class="row">
                         <?php echo e($logisticsLine->description, false); ?>
@@ -36,6 +36,7 @@
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
+    <div><?php echo e($logisticsLines->links(), false); ?></div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scriptsAfterJs'); ?>
     <script>
@@ -46,8 +47,6 @@
                 text: "确定删除吗？",
                 buttons: ['取消', '确定'],
                 icon: 'warning',
-
-
             })
                 .then(function (res) {
                     if (!!res) {

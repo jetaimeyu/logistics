@@ -12,7 +12,7 @@ class LogisticController extends Controller
 {
     public function index(Request $request)
     {
-        return view('logistic.index',['logisticsLines'=>$request->user()->logisticsLine ]);
+        return view('logistic.index',['logisticsLines'=>$request->user()->logisticsLine()->paginate(1) ]);
     }
     //
     public function create()

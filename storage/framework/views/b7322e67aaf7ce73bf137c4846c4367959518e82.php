@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scale=no">
     <title><?php echo e(config('app.name'), false); ?>- <?php echo $__env->yieldContent('title'); ?></title>
     <meta name="Keywords" content="<?php echo e(config('app.keywords'), false); ?>-<?php echo $__env->yieldContent('keywords'); ?>">
     <meta name="Description" content="<?php echo e(config('app.description'), false); ?>-<?php echo $__env->yieldContent('description'); ?>">
@@ -30,28 +30,6 @@
 <?php echo $__env->make('layouts._footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script src="<?php echo e(mix('js/app.js'), false); ?>"></script>
 <?php echo $__env->yieldContent('scriptsAfterJs'); ?>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    // (function() {
-    //     'use strict';
-    //     window.addEventListener('load', function() {
-    //         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    //         var forms = document.getElementsByClassName('needs-validation');
-    //         // Loop over them and prevent submission
-    //         var validation = Array.prototype.filter.call(forms, function(form) {
-    //
-    //             form.addEventListener('submit', function(event) {
-    //                 console.log(form);
-    //                 if (form.checkValidity() === false) {
-    //                     event.preventDefault();
-    //                     event.stopPropagation();
-    //                 }
-    //                 form.classList.add('was-validated');
-    //             }, false);
-    //         });
-    //     }, false);
-    // })();
-</script>
 </body>
 </html>
 <?php /**PATH F:\www\logistics\resources\views/layouts/default.blade.php ENDPATH**/ ?>

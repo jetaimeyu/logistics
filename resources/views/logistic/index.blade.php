@@ -21,7 +21,7 @@
                         <div class="col-md-6 p-0">
                             出发地联系人：{{$logisticsLine->startContact}} {{$logisticsLine->startPhone}}</div>
                         <div class="col-md-6 p-0">
-                            目的地联系人：{{$logisticsLine->endContact}}{{$logisticsLine->endPhone}}</div>
+                            目的地联系人：{{$logisticsLine->endContact}} {{$logisticsLine->endPhone}}</div>
                     </div>
                     <div class="row">
                         {{$logisticsLine->description}}
@@ -36,6 +36,7 @@
             </div>
         @endforeach
     </div>
+    <div>{{$logisticsLines->links()}}</div>
 @endsection
 @section('scriptsAfterJs')
     <script>
